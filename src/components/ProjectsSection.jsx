@@ -1,37 +1,10 @@
 import { ArrowRight, Github } from "lucide-react";
-
-const projects = [
-  {
-    id: 1,
-    title: "BudgeIT - Budget Tracker",
-    description: "A semi-working budget tracker app built with Python, HTML, CSS, and JavaScript. Using Supabase for the database and Flask as its main framework.",
-    image: "/banners/budgeIT.png",
-    tags: ["Flask", "Python", "Supabase"],
-    url: "https://budge-it-j4bp.onrender.com/dashboard",
-    githubUrl: "https://github.com/lMarul/Budge-IT.git",
-  },
-  {
-    id: 2,
-    title: "Pasay South High School School Portal",
-    description:
-      "A work in progress school portal for Pasay South High School. Using Flask as its main framework and Supabase for the database.",
-    image: "/banners/SchoolPortal.png",
-    tags: ["Flask", "Python", "Supabase"],
-    url: "https://student-monitor-student-portal.onrender.com/student/login",
-    githubUrl: "",
-  },
-  {
-    id: 3,
-    title: "Asia Pacific College - Gym Log System",
-    description:
-      "A gym log system for Asia Pacific College. Using Flask as its main framework and using a local database.",
-    image: "/banners/gymlog.png",
-    tags: ["Python", "Flask"],
-    githubUrl: "https://github.com/tarikuzuma/gymlog-test.git",
-  },
-];
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 export const ProjectsSection = () => {
+  const projects = useQuery(api.projects.get) ?? [];
+
   return (
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">

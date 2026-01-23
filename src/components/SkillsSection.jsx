@@ -1,35 +1,13 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-
-const skills = [
-  // Frontend
-  { name: "HTML", category: "frontend", img: "/assets/html-5-svgrepo-com.svg" },
-  { name: "CSS", category: "frontend", img: "/assets/css3-svgrepo-com.svg" },
-  { name: "JavaScript", category: "frontend", img: "/assets/javascript-svgrepo-com.svg" },
-
-  // Frameworks
-  { name: "Flask", category: "frameworks", img: "/assets/flask-svgrepo-com.svg" },
-  { name: "React", category: "frameworks", img: "/assets/react.svg" },
-  { name: "Tailwind CSS", category: "frameworks", img: "/assets/tailwindcss-icon-svgrepo-com.svg" },
-
-
-  // Backend
-  { name: "Python", category: "backend", img: "/assets/python-svgrepo-com.svg" },
-  { name: "Java", category: "backend", img: "/assets/java-svgrepo-com.svg" },
-  { name: "SQL", category: "backend", img: "/assets/sql-svgrepo-com.svg" },
-  { name: "SQLite", category: "backend", img: "/assets/sqlite-svgrepo-com.svg" },
-
-  // Tools
-  { name: "Git", category: "tools", img: "/assets/git-svgrepo-com.svg" },
-  { name: "Github", category: "tools", img: "/assets/github-142-svgrepo-com.svg" },
-  { name: "Figma", category: "tools", img: "/assets/figma-svgrepo-com.svg" },
-  { name: "VS Code", category: "tools", img: "/assets/vs-code-svgrepo-com.svg" },
-];
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const categories = ["all", "frontend", "backend", "frameworks", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
+  const skills = useQuery(api.skills.get) ?? [];
 
   const filteredSkills = skills.filter(
     (skill) => activeCategory === "all" || skill.category === activeCategory
