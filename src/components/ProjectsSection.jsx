@@ -27,7 +27,7 @@ export const ProjectsSection = () => {
               rel="noopener noreferrer"
               className={
                 "group bg-card rounded-lg overflow-hidden shadow-xs card-hover block transition-transform duration-300 hover:scale-[1.02] relative" +
-                (project.url ? " hover:ring-4 hover:ring-purple-500/40" : "")
+                (project.url ? " hover:ring-4 hover:ring-red-500/40" : "")
               }
             >
               <div className="h-48 overflow-hidden">
@@ -69,14 +69,14 @@ export const ProjectsSection = () => {
         <div className="text-center mt-12">
           <div className="flex items-center justify-center gap-4">
             <a
-              className="cosmic-button w-fit flex items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white"
+              className="cosmic-button w-fit flex items-center gap-2 bg-gradient-to-r from-red-700 to-red-500 text-white"
               target="_blank"
               href="https://github.com/lMarul/Portfolio.git"
             >
               This Portfolio
             </a>
             <a
-              className="cosmic-button w-fit flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+              className="cosmic-button w-fit flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-700 text-white"
               target="_blank"
               href="https://github.com/lMarul"
             >
