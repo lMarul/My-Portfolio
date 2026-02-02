@@ -1,89 +1,272 @@
-import { ArrowRight, Github } from "lucide-react";
-import { useQuery } from "convex/react";
+import { useState, useEffect, useRef } from "react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { FolderGit2, Sparkles, Code2, Zap } from "lucide-react";
+import { ProjectCarousel } from "./projects/ProjectCarousel";
+import { ProjectShowcase } from "./projects/ProjectShowcase";
 
 export const ProjectsSection = () => {
-  const projects = useQuery(api.projects.get) ?? [];
+  const projects = useQuery(api.projects.get) || [];
+  const seedProjects = useMutation(api.projects.seed);
+  const [activeProject, setActiveProject] = useState(null);
+  const [isSeeding, setIsSeeding] = useState(false);
+
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const showcaseRef = useRef(null);
+  const carouselRef = useRef(null);
+  const particlesRef = useRef(null);
+
+  useEffect(() => {
+    if (projects.length > 0 && !activeProject) {
+      setActiveProject(projects[0]);
+    }
+  }, [projects, activeProject]);
+
+  useEffect(() => {
+    if (activeProject && projects.length > 0) {
+      const updated = projects.find((p) => p._id === activeProject._id);
+      if (updated) {
+        setActiveProject(updated);
+      }
+    }
+  }, [projects]);
+
+  // GSAP Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Create code-like floating particles
+      if (particlesRef.current) {
+        const codeSymbols = ["</>", "{}", "[]", "()", "=>", "//", "&&", "||"];
+        
+        for (let i = 0; i < 15; i++) {
+          const particle = document.createElement("div");
+          const isSymbol = Math.random() > 0.5;
+          
+          if (isSymbol) {
+            particle.textContent = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
+            particle.style.cssText = `
+              position: absolute;
+              font-family: monospace;
+              font-size: ${Math.random() * 12 + 10}px;
+              color: rgba(220, 38, 38, ${Math.random() * 0.3 + 0.1});
+              left: ${Math.random() * 100}%;
+              top: ${Math.random() * 100}%;
+              pointer-events: none;
+              text-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+            `;
+          } else {
+            particle.style.cssText = `
+              position: absolute;
+              width: ${Math.random() * 4 + 2}px;
+              height: ${Math.random() * 4 + 2}px;
+              background: rgba(220, 38, 38, ${Math.random() * 0.4 + 0.2});
+              border-radius: 50%;
+              left: ${Math.random() * 100}%;
+              top: ${Math.random() * 100}%;
+              pointer-events: none;
+              box-shadow: 0 0 ${Math.random() * 10 + 5}px rgba(220, 38, 38, 0.5);
+            `;
+          }
+          
+          particlesRef.current.appendChild(particle);
+
+          gsap.to(particle, {
+            x: `random(-80, 80)`,
+            y: `random(-80, 80)`,
+            opacity: `random(0.2, 0.8)`,
+            rotation: isSymbol ? `random(-20, 20)` : 0,
+            duration: `random(4, 10)`,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        }
+      }
+
+      // Header entrance animation
+      gsap.from(headerRef.current, {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Showcase entrance
+      gsap.from(showcaseRef.current, {
+        y: 80,
+        opacity: 0,
+        scale: 0.95,
+        duration: 1.2,
+        delay: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: showcaseRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Carousel entrance
+      gsap.from(carouselRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.4,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: carouselRef.current,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [projects.length]);
+
+  const handleSelect = (project) => {
+    if (showcaseRef.current) {
+      gsap.to(showcaseRef.current, {
+        scale: 0.98,
+        duration: 0.15,
+        ease: "power2.in",
+        onComplete: () => {
+          setActiveProject(project);
+          gsap.to(showcaseRef.current, {
+            scale: 1,
+            duration: 0.3,
+            ease: "elastic.out(1, 0.5)",
+          });
+        },
+      });
+    } else {
+      setActiveProject(project);
+    }
+  };
+
+  const handleSeed = async () => {
+    setIsSeeding(true);
+    try {
+      await seedProjects();
+    } finally {
+      setIsSeeding(false);
+    }
+  };
 
   return (
-    <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          {" "}
-          Featured <span className="text-primary"> Projects </span>
-        </h2>
+    <section 
+      ref={sectionRef}
+      id="projects" 
+      className="py-28 px-4 relative overflow-hidden"
+    >
+      {/* Floating particles */}
+      <div 
+        ref={particlesRef}
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+      />
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
-        </p>
+      {/* Background glow effects */}
+      <div className="absolute top-20 right-1/4 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-1/4 w-[400px] h-[400px] bg-red-600/5 rounded-full blur-3xl" />
+      
+      {/* Grid pattern overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(220, 38, 38, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(220, 38, 38, 0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, key) => (
-            <a
-              key={key}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={
-                "group bg-card rounded-lg overflow-hidden shadow-xs card-hover block transition-transform duration-300 hover:scale-[1.02] relative" +
-                (project.url ? " hover:ring-4 hover:ring-red-500/40" : "")
-              }
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <div ref={headerRef} className="text-center mb-16">
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
+                       bg-red-500/10 border border-red-500/20 mb-6"
+          >
+            <Code2 className="w-4 h-4 text-red-500" />
+            <span className="text-sm font-medium text-red-500">Featured Work</span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-6xl font-black mb-4">
+            Featured{" "}
+            <span 
+              className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-red-600"
+              style={{
+                textShadow: "0 0 60px rgba(220, 38, 38, 0.3)",
+              }}
             >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-6 min-h-[260px]">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground" key={tag}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <h3 className="text-xl font-semibold mb-1"> {project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-                {project.githubUrl && (
-                  <div className="absolute bottom-4 left-4">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                      onClick={e => e.stopPropagation()}
-                    >
-                      <Github size={30} />
-                    </a>
-                  </div>
-                )}
-              </div>
-            </a>
-          ))}
+              Projects
+            </span>
+          </h2>
+
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Explore my portfolio of projects showcasing modern web development,
+            creative solutions, and technical expertise that push boundaries.
+          </p>
         </div>
 
-        <div className="text-center mt-12">
-          <div className="flex items-center justify-center gap-4">
-            <a
-              className="cosmic-button w-fit flex items-center gap-2 bg-gradient-to-r from-red-700 to-red-500 text-white"
-              target="_blank"
-              href="https://github.com/lMarul/Portfolio.git"
+        {/* Seed Button (Development) */}
+        {projects.length === 0 && (
+          <div className="text-center mb-12">
+            <button
+              onClick={handleSeed}
+              disabled={isSeeding}
+              className="group px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-red-500 
+                         text-white font-bold text-lg shadow-[0_0_30px_rgba(220,38,38,0.4)]
+                         hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] hover:scale-105
+                         transition-all duration-300 disabled:opacity-50"
             >
-              This Portfolio
-            </a>
-            <a
-              className="cosmic-button w-fit flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-700 text-white"
-              target="_blank"
-              href="https://github.com/lMarul"
-            >
-              Check My Github
-            </a>
+              {isSeeding ? (
+                <span className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/20 border-t-white" />
+                  Loading...
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  <FolderGit2 className="w-5 h-5" />
+                  Load Sample Project
+                </span>
+              )}
+            </button>
           </div>
-        </div>
+        )}
+
+        {/* Main Showcase */}
+        {projects.length > 0 && (
+          <>
+            <div ref={showcaseRef} className="mb-10">
+              <AnimatePresence mode="wait">
+                <ProjectShowcase key={activeProject?._id} project={activeProject} />
+              </AnimatePresence>
+            </div>
+
+            {/* Carousel */}
+            <div ref={carouselRef}>
+              <ProjectCarousel
+                projects={projects}
+                activeId={activeProject?._id}
+                onSelect={handleSelect}
+              />
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
