@@ -109,7 +109,7 @@ export const EpicSkillsSection = () => {
     const rect = button.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     ripple.style.cssText = `
       position: absolute;
       width: 10px;
@@ -136,14 +136,14 @@ export const EpicSkillsSection = () => {
   };
 
   return (
-    <section 
-      id="skills" 
+    <section
+      id="skills"
       ref={containerRef}
       className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background"
       style={{ perspective: "1500px" }}
     >
       {/* Animated background grid */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `
@@ -168,7 +168,7 @@ export const EpicSkillsSection = () => {
             </span>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
             Skills & <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Technologies</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -200,7 +200,7 @@ export const EpicSkillsSection = () => {
         </div>
 
         {/* Skills Grid */}
-        <div 
+        <div
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
           style={{ transformStyle: "preserve-3d" }}
         >
@@ -211,34 +211,34 @@ export const EpicSkillsSection = () => {
               intensity={12}
               glowColor="rgba(220, 38, 38, 0.3)"
             >
-              <div 
+              <div
                 className="group relative p-6 rounded-2xl bg-gradient-to-br from-card/90 to-card/50 
                            backdrop-blur-xl border border-border/50 hover:border-primary/50
                            transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
+
                 {/* Icon with 3D effect */}
-                <div 
+                <div
                   className="relative flex flex-col items-center gap-4"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <div 
+                  <div
                     className="relative w-16 h-16 flex items-center justify-center"
                     style={{ transform: "translateZ(25px)" }}
                   >
                     {/* Glow behind icon */}
                     <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    <img 
-                      src={skill.img} 
-                      alt={skill.name + ' icon'} 
+
+                    <img
+                      src={skill.img}
+                      alt={skill.name + ' icon'}
                       className="relative w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  
-                  <span 
+
+                  <span
                     className="font-semibold text-lg text-center group-hover:text-primary transition-colors duration-300"
                     style={{ transform: "translateZ(15px)" }}
                   >
@@ -246,7 +246,7 @@ export const EpicSkillsSection = () => {
                   </span>
 
                   {/* Category tag */}
-                  <span 
+                  <span
                     className="text-xs text-muted-foreground/60 uppercase tracking-wider"
                     style={{ transform: "translateZ(10px)" }}
                   >

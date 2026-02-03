@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Calendar,
   Building2,
+  Code2,
 } from "lucide-react";
 import { HackathonCard } from "./HackathonCard";
 
@@ -111,28 +112,39 @@ export const HackathonArchive = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-12 px-4">
+    <div className="min-h-screen pt-20 pb-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-12 text-center relative"
         >
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
+            className="absolute left-0 top-2 md:top-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500/20 hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] transition-all group overflow-hidden"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform relative z-10" />
+            <span className="font-medium relative z-10">Back</span>
           </Link>
 
-          <h1 className="text-4xl font-bold text-foreground mb-2">
-            Hackathon Archive
-          </h1>
-          <p className="text-muted-foreground">
-            Browse all {hackathons.length} hackathon projects
-          </p>
+          <div className="pt-12 md:pt-0">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Code2 className="w-5 h-5 text-red-500" />
+              <span className="text-sm uppercase tracking-[0.3em] text-red-500 font-medium">
+                Innovation Lab
+              </span>
+              <Code2 className="w-5 h-5 text-red-500" />
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-black text-foreground font-cinzel mb-4">
+              Hackathon <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-red-600">Archive</span>
+            </h1>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Browse all {hackathons.length} hackathon projects and innovative solutions.
+            </p>
+          </div>
         </motion.div>
 
         {/* Search & Filters */}
@@ -168,11 +180,10 @@ export const HackathonArchive = () => {
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`px-3 py-1.5 text-sm rounded-full transition-all ${
-                  selectedTags.includes(tag)
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-card text-foreground border border-border hover:border-primary/50"
-                }`}
+                className={`px-3 py-1.5 text-sm rounded-full transition-all ${selectedTags.includes(tag)
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-card text-foreground border border-border hover:border-primary/50"
+                  }`}
               >
                 {tag}
               </button>
@@ -293,11 +304,10 @@ export const HackathonArchive = () => {
                         <button
                           key={idx}
                           onClick={() => setGalleryIndex(idx)}
-                          className={`w-2 h-2 rounded-full transition-all ${
-                            idx === galleryIndex
-                              ? "bg-white w-4"
-                              : "bg-white/50 hover:bg-white/80"
-                          }`}
+                          className={`w-2 h-2 rounded-full transition-all ${idx === galleryIndex
+                            ? "bg-white w-4"
+                            : "bg-white/50 hover:bg-white/80"
+                            }`}
                         />
                       ))}
                     </div>

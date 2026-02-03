@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { Award, ExternalLink, Calendar, Cloud, Code, Smartphone, Shield, Database, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Award, ExternalLink, Calendar, Cloud, Code, Smartphone, Shield, Database, Sparkles, ChevronRight } from "lucide-react";
 import { Anime3DCard, RevealOnScroll, MorphingShape } from "./AnimeComponents";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -65,7 +66,7 @@ export const CertificationsSection = () => {
                         </span>
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-black mb-6">
+                    <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
                         Certified <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-blue-600">Expertise</span>
                     </h2>
 
@@ -102,7 +103,7 @@ export const CertificationsSection = () => {
 
                 {/* Certifications Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    {certifications.map((cert, index) => {
+                    {certifications.slice(0, 4).map((cert, index) => {
                         const Icon = getIcon(cert.iconType);
                         return (
                             <RevealOnScroll key={cert._id} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
@@ -175,6 +176,22 @@ export const CertificationsSection = () => {
                             </RevealOnScroll>
                         );
                     })}
+                </div>
+
+                {/* See All Button */}
+                <div className="text-center mt-16">
+                    <Link
+                        to="/certifications"
+                        className="group inline-flex items-center gap-2 px-6 py-3 rounded-full
+                                   bg-gradient-to-r from-primary/10 to-transparent
+                                   border border-primary/30 hover:border-primary/60
+                                   text-primary font-medium
+                                   hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]
+                                   transition-all duration-300"
+                    >
+                        <span>View All Certifications</span>
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                 </div>
             </div>
         </section>

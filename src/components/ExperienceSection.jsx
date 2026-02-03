@@ -66,7 +66,7 @@ const formatDateRange = (startDate, endDate, isCurrent) => {
 const calculateDuration = (startDate, endDate, isCurrent) => {
   const start = new Date(startDate + "-01");
   const end = isCurrent || !endDate ? new Date() : new Date(endDate + "-01");
-  
+
   const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
   const years = Math.floor(months / 12);
   const remainingMonths = months % 12;
@@ -573,7 +573,7 @@ const ExperienceSectionContent = () => {
             </span>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
             Work{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">
               Experience
@@ -639,7 +639,7 @@ const ExperienceSectionContent = () => {
 
               {/* Experience cards */}
               <div className="space-y-6 pl-10">
-                {experiences.map((exp, index) => (
+                {experiences.slice(0, 3).map((exp, index) => (
                   <ExperienceCard
                     key={exp._id}
                     experience={exp}
@@ -659,6 +659,22 @@ const ExperienceSectionContent = () => {
             </div>
           </div>
         )}
+
+        {/* See All Button */}
+        <div className="text-center mt-16">
+          <a
+            href="/experience"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-full
+                       bg-gradient-to-r from-primary/10 to-transparent
+                       border border-primary/30 hover:border-primary/60
+                       text-primary font-medium
+                       hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]
+                       transition-all duration-300"
+          >
+            <span>View Full Career Timeline</span>
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
       </div>
     </section>
   );

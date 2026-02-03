@@ -107,15 +107,15 @@ export const EpicContactSection = () => {
   };
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       ref={sectionRef}
       className="min-h-screen flex flex-col justify-center py-24 px-4 relative overflow-hidden"
       style={{ perspective: "1500px" }}
     >
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-background" />
-      
+
       {/* Floating orbs */}
       {[...Array(8)].map((_, i) => (
         <div
@@ -143,7 +143,7 @@ export const EpicContactSection = () => {
             </span>
             <MessageCircle className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
             Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Touch</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -155,7 +155,7 @@ export const EpicContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left - Contact Form */}
           <RevealOnScroll direction="left" delay={200}>
-            <Anime3DCard 
+            <Anime3DCard
               className="rounded-3xl bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-xl border border-border/50 p-8"
               intensity={5}
             >
@@ -240,7 +240,7 @@ export const EpicContactSection = () => {
                       onMouseLeave={(e) => handleIconHover(e, false)}
                       style={{ transformStyle: "preserve-3d" }}
                     >
-                      <div 
+                      <div
                         className="w-14 h-14 rounded-2xl bg-card/80 border border-border/50 
                                    flex items-center justify-center
                                    group-hover:border-primary/50 transition-all duration-300
@@ -249,12 +249,12 @@ export const EpicContactSection = () => {
                           boxShadow: `0 10px 40px -10px ${social.color}40`,
                         }}
                       >
-                        <social.icon 
+                        <social.icon
                           className="w-6 h-6 transition-colors duration-300"
                           style={{ color: social.color }}
                         />
                       </div>
-                      
+
                       {/* Tooltip */}
                       <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium
                                      opacity-0 group-hover:opacity-100 transition-opacity duration-300
@@ -267,16 +267,16 @@ export const EpicContactSection = () => {
               </div>
 
               {/* Quick Info */}
-              <div 
+              <div
                 className="p-8 rounded-3xl bg-gradient-to-br from-card/90 to-card/50 
                            backdrop-blur-xl border border-border/50"
               >
                 <h3 className="text-xl font-bold mb-4">Quick Response</h3>
                 <p className="text-muted-foreground mb-6">
-                  I typically respond within 24 hours. For urgent matters, 
+                  I typically respond within 24 hours. For urgent matters,
                   feel free to reach out via social media.
                 </p>
-                
+
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-muted-foreground">
                     <Mail className="w-5 h-5 text-primary" />

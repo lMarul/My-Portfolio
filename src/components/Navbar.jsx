@@ -5,14 +5,14 @@ import { ThemeToggle } from "./ThemeToggle";
 import anime from "animejs";
 
 const navItems = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Hackathons", href: "#hackathons" },
-  { name: "Projects", href: "#projects" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/#about" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Experience", href: "/#experience" },
+  { name: "Hackathons", href: "/hackathons" },
+  { name: "Projects", href: "/#projects" },
+  { name: "Certifications", href: "/#certifications" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export const Navbar = () => {

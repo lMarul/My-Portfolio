@@ -22,10 +22,10 @@ export const UltimateBackground = () => {
     fpsLimit: 30,
     particles: {
       number: {
-        value: 40,
+        value: 20,
+        limit: 20,
         density: {
-          enable: true,
-          area: 1000,
+          enable: false,
         },
       },
       color: {
@@ -35,10 +35,13 @@ export const UltimateBackground = () => {
         type: "circle",
       },
       opacity: {
-        value: 0.5,
-        random: false,
+        value: { min: 0, max: 0.5 },
         animation: {
-          enable: false,
+          enable: true,
+          speed: 1,
+          sync: false,
+          startValue: "random",
+          destroy: "none",
         },
       },
       size: {
@@ -130,7 +133,7 @@ export const FloatingOrbs = () => {
           animation: "float-orb-1 20s ease-in-out infinite",
         }}
       />
-      
+
       {/* Secondary orb */}
       <div
         className="absolute w-[500px] h-[500px] rounded-full opacity-25"
@@ -142,7 +145,7 @@ export const FloatingOrbs = () => {
           animation: "float-orb-2 25s ease-in-out infinite",
         }}
       />
-      
+
       {/* Accent orb */}
       <div
         className="absolute w-[400px] h-[400px] rounded-full opacity-20"

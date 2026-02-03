@@ -77,8 +77,8 @@ export const EpicAboutSection = () => {
   ];
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       ref={sectionRef}
       className="py-32 px-4 relative overflow-hidden"
       style={{ perspective: "1500px" }}
@@ -97,7 +97,7 @@ export const EpicAboutSection = () => {
             </span>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Me</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -109,27 +109,27 @@ export const EpicAboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Bio */}
           <RevealOnScroll direction="left" delay={200}>
-            <div 
+            <div
               className="relative p-8 rounded-3xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border border-border/50"
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Decorative elements */}
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-red-500/20 rounded-full blur-2xl" />
-              
+
               <div className="relative z-10 space-y-6">
-                <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-                  Passionate Web Developer & Cybersecurity Enthusiast
+                <h3 className="text-3xl font-bold font-cinzel text-foreground">
+                  Passionate Web Developer & <span className="text-red-500">Cybersecurity Enthusiast</span>
                 </h3>
-                
+
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  With rich experiences in web development from various projects, 
-                  I am still eager to learn more about other languages, frameworks, 
+                  With rich experiences in web development from various projects,
+                  I am still eager to learn more about other languages, frameworks,
                   and technologies that I can use to create more innovative solutions.
                 </p>
-                
+
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  I'm passionate about exploring new technologies, especially in web development 
+                  I'm passionate about exploring new technologies, especially in web development
                   and cybersecurity, constantly pushing the boundaries of what's possible.
                 </p>
 
@@ -148,8 +148,8 @@ export const EpicAboutSection = () => {
                 </div>
 
                 <div className="pt-4">
-                  <a 
-                    href="#contact" 
+                  <a
+                    href="#contact"
                     className="group inline-flex items-center gap-2 px-8 py-4 rounded-full 
                                bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold
                                shadow-lg shadow-red-500/25 hover:shadow-red-500/40 
@@ -164,7 +164,7 @@ export const EpicAboutSection = () => {
           </RevealOnScroll>
 
           {/* Right side - Skill cards */}
-          <div 
+          <div
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
             style={{ transformStyle: "preserve-3d" }}
           >
@@ -177,25 +177,25 @@ export const EpicAboutSection = () => {
                 intensity={10}
               >
                 <div className="relative z-10">
-                  <div 
+                  <div
                     className={`about-icon w-14 h-14 rounded-xl bg-gradient-to-br ${card.gradient} 
                                 flex items-center justify-center mb-4 shadow-lg`}
-                    style={{ 
+                    style={{
                       transform: "translateZ(20px)",
                       boxShadow: `0 10px 40px -10px ${card.gradient.includes("red") ? "rgba(239,68,68,0.5)" : "rgba(99,102,241,0.5)"}`,
                     }}
                   >
                     <card.icon className="w-7 h-7 text-white" />
                   </div>
-                  
-                  <h4 
+
+                  <h4
                     className="text-xl font-bold mb-2"
                     style={{ transform: "translateZ(15px)" }}
                   >
                     {card.title}
                   </h4>
-                  
-                  <p 
+
+                  <p
                     className="text-muted-foreground text-sm leading-relaxed"
                     style={{ transform: "translateZ(10px)" }}
                   >
@@ -204,7 +204,7 @@ export const EpicAboutSection = () => {
                 </div>
 
                 {/* Card glow effect */}
-                <div 
+                <div
                   className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${card.gradient} opacity-0 
                               group-hover:opacity-10 transition-opacity duration-300`}
                 />

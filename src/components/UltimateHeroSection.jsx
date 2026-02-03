@@ -29,10 +29,10 @@ export const UltimateHeroSection = () => {
     fpsLimit: 30,
     particles: {
       number: {
-        value: 50,
+        value: 20,
+        limit: 20,
         density: {
-          enable: true,
-          area: 1000,
+          enable: false,
         },
       },
       color: {
@@ -42,8 +42,13 @@ export const UltimateHeroSection = () => {
         type: "circle",
       },
       opacity: {
-        value: 0.5,
+        value: { min: 0, max: 0.5 },
         random: false,
+        animation: {
+          enable: true,
+          speed: 1,
+          sync: false,
+        },
       },
       size: {
         value: 2.5,
@@ -172,7 +177,7 @@ export const UltimateHeroSection = () => {
       )}
 
       {/* Static grid background */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.02] z-[2]"
         style={{
           backgroundImage: `
@@ -197,11 +202,11 @@ export const UltimateHeroSection = () => {
         </div>
 
         {/* Name - THE STAR OF THE SHOW */}
-        <div 
+        <div
           ref={nameRef}
           className="relative mb-8"
         >
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight font-cinzel">
             <span className="text-red-500">Marwin</span>
           </h1>
         </div>
@@ -245,7 +250,7 @@ export const UltimateHeroSection = () => {
               Explore My Work
             </span>
           </a>
-          
+
           <a
             href="#contact"
             className="px-8 py-4 rounded-full font-bold text-lg
