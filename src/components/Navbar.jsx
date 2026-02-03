@@ -21,25 +21,7 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("hero");
   const navRef = useRef(null);
 
-  useEffect(() => {
-    // Initial entrance animation
-    anime({
-      targets: ".nav-item",
-      translateY: [-20, 0],
-      opacity: [0, 1],
-      duration: 800,
-      delay: anime.stagger(100, { start: 300 }),
-      easing: "easeOutExpo",
-    });
-
-    anime({
-      targets: ".nav-logo",
-      translateX: [-50, 0],
-      opacity: [0, 1],
-      duration: 1000,
-      easing: "easeOutExpo",
-    });
-  }, []);
+  // Removed entrance animation as per user request
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,30 +46,34 @@ export const Navbar = () => {
   }, []);
 
   const handleNavClick = (e, href) => {
-    // Animate the clicked item
+    // Subtle click feedback instead of bouncy scale
     anime({
       targets: e.currentTarget,
-      scale: [1, 0.9, 1],
+      opacity: [1, 0.7, 1],
       duration: 300,
-      easing: "easeOutElastic(1, .5)",
+      easing: "easeInOutQuad",
     });
   };
 
   const handleNavHover = (e, enter) => {
-    if (enter) {
-      anime({
-        targets: e.currentTarget.querySelector(".nav-underline"),
-        scaleX: [0, 1],
-        duration: 300,
-        easing: "easeOutExpo",
-      });
-    } else {
-      anime({
-        targets: e.currentTarget.querySelector(".nav-underline"),
-        scaleX: [1, 0],
-        duration: 200,
-        easing: "easeInExpo",
-      });
+    // Only animate underline if NOT active
+    const underline = e.currentTarget.querySelector(".nav-underline");
+    if (!e.currentTarget.classList.contains("active-nav-item")) {
+      if (enter) {
+        anime({
+          targets: underline,
+          scaleX: [0, 1],
+          duration: 300,
+          easing: "easeOutExpo",
+        });
+      } else {
+        anime({
+          targets: underline,
+          scaleX: [1, 0],
+          duration: 200,
+          easing: "easeInExpo",
+        });
+      }
     }
   };
 
@@ -104,7 +90,7 @@ export const Navbar = () => {
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <a
-          className="nav-logo text-xl font-bold flex items-center gap-2 opacity-0 group"
+          className="nav-logo text-xl font-bold flex items-center gap-2 group"
           href="#hero"
         >
           <div className="relative">
@@ -128,32 +114,26 @@ export const Navbar = () => {
                 onMouseEnter={(e) => handleNavHover(e, true)}
                 onMouseLeave={(e) => handleNavHover(e, false)}
                 className={cn(
-                  "nav-item relative px-4 py-2 rounded-full font-medium transition-all duration-300 opacity-0",
-                  isActive
-                    ? "text-primary"
-                    : "text-foreground/70 hover:text-foreground"
+                  "nav-item relative px-4 py-2 rounded-full font-medium transition-all duration-300",
+                  isActive ? "text-red-500 active-nav-item" : "text-foreground/70 hover:text-foreground"
                 )}
               >
                 {item.name}
-                {/* Animated underline */}
+                {/* Underline logic: Visible if active, or handled by hover animation */}
                 <span
                   className={cn(
                     "nav-underline absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-3/4 rounded-full",
-                    "bg-gradient-to-r from-red-500 to-red-600",
-                    "origin-center",
+                    "bg-red-500",
+                    "origin-center transition-transform duration-300",
                     isActive ? "scale-x-100" : "scale-x-0"
                   )}
                 />
-                {/* Active indicator dot */}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary animate-pulse" />
-                )}
               </a>
             );
           })}
 
           {/* Theme Toggle with animation */}
-          <div className="nav-item opacity-0 ml-4">
+          <div className="nav-item ml-4">
             <ThemeToggle />
           </div>
         </div>

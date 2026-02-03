@@ -78,10 +78,9 @@ export default defineSchema({
     logo: v.optional(v.string()), // Organization logo URL
     color: v.optional(v.string()), // Accent color for the card
     technologies: v.array(v.string()), // Tech stack used
-
-    // Sorting
-    order: v.number(), // Manual sort order (lower = higher priority)
-  }).index("by_order", ["order"]),
+  })
+    .index("by_startDate", ["startDate"])
+    .index("by_type", ["type"]),
 
   // Certifications Schema
   certifications: defineTable({
@@ -98,4 +97,37 @@ export default defineSchema({
 
     skills: v.array(v.string()),
   }).index("by_date", ["date"]),
+
+  // Hero Content - Single row for hero section
+  heroContent: defineTable({
+    title: v.string(),
+    subtitle: v.string(),
+    description: v.string(),
+    roles: v.array(v.string()),
+    lastUpdated: v.number(),
+  }),
+
+  // About Content - Single row for about section
+  aboutContent: defineTable({
+    title: v.string(),
+    subtitle: v.string(),
+    bio: v.array(v.string()), // Array of paragraphs
+    stats: v.object({
+      projects: v.string(),
+      technologies: v.string(),
+      curiosity: v.string(),
+    }),
+    lastUpdated: v.number(),
+  }),
+
+  // Social Links - Multiple rows, one per platform
+  socialLinks: defineTable({
+    platform: v.string(), // "linkedin", "github", "facebook", "instagram", "email"
+    url: v.string(),
+    label: v.string(),
+    color: v.string(), // Hex color for the icon
+    order: v.number(), // Display order
+    isActive: v.boolean(), // Can hide/show links
+  }).index("by_order", ["order"]),
 });
+

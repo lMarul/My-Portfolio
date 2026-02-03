@@ -16,28 +16,35 @@
   --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
 
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0);
     }
+
     50% {
       transform: translateY(-10px);
     }
   }
+
   @keyframes pulse-subtle {
+
     0%,
     100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.8;
     }
   }
+
   @keyframes fade-in {
     from {
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -47,13 +54,18 @@
 
 /* Move low-bounce animation outside @theme */
 @keyframes low-bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
-    transform: translateY(-7px); /* Lower value for a smaller bounce */
+    transform: translateY(-7px);
+    /* Lower value for a smaller bounce */
   }
 }
+
 .animate-low-bounce {
   animation: low-bounce 1s infinite;
 }
@@ -92,7 +104,7 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -101,19 +113,23 @@
   margin-inline: auto;
   padding-inline: 2rem;
 
-  @media (width >= 640px) {
+  @media (width >=640px) {
     max-width: 640px;
   }
-  @media (width >= 768px) {
+
+  @media (width >=768px) {
     max-width: 768px;
   }
-  @media (width >= 1024px) {
+
+  @media (width >=1024px) {
     max-width: 1024px;
   }
-  @media (width >= 1280px) {
+
+  @media (width >=1280px) {
     max-width: 1280px;
   }
-  @media (width >= 1400px) {
+
+  @media (width >=1400px) {
     max-width: 1400px;
   }
 }
@@ -128,9 +144,7 @@
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(220,38,38,0.5)]
-         hover:scale-105 active:scale-95;
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(220, 38, 38, 0.5)] hover:scale-105 active:scale-95;
 }
 
 /* Gradient border class - using regular CSS for pseudo-element */
@@ -190,7 +204,7 @@ html {
 
 /* Glowing text effect */
 .glow-text {
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(220, 38, 38, 0.8),
     0 0 20px rgba(220, 38, 38, 0.6),
     0 0 40px rgba(220, 38, 38, 0.4),
@@ -206,14 +220,17 @@ html {
 
 /* Neon border animation */
 @keyframes neon-border {
-  0%, 100% {
-    box-shadow: 
+
+  0%,
+  100% {
+    box-shadow:
       0 0 5px rgba(220, 38, 38, 0.5),
       0 0 10px rgba(220, 38, 38, 0.3),
       inset 0 0 5px rgba(220, 38, 38, 0.2);
   }
+
   50% {
-    box-shadow: 
+    box-shadow:
       0 0 20px rgba(220, 38, 38, 0.8),
       0 0 40px rgba(220, 38, 38, 0.5),
       inset 0 0 20px rgba(220, 38, 38, 0.3);
@@ -226,9 +243,12 @@ html {
 
 /* Floating animation */
 @keyframes float-3d {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) translateZ(0) rotateX(0);
   }
+
   50% {
     transform: translateY(-20px) translateZ(20px) rotateX(5deg);
   }
@@ -243,28 +263,30 @@ html {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 3s ease-in-out infinite;
 }
 
 /* Pulse glow animation */
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
     transform: scale(1);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
     transform: scale(1.02);
@@ -317,7 +339,7 @@ html {
 
 /* Red glow text on hover */
 .hover-glow:hover {
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(220, 38, 38, 0.8),
     0 0 20px rgba(220, 38, 38, 0.5),
     0 0 30px rgba(220, 38, 38, 0.3);
@@ -345,10 +367,13 @@ html {
 
 /* Pulsing red dot */
 @keyframes pulse-dot {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
   }
+
   50% {
     transform: scale(1.2);
     box-shadow: 0 0 20px rgba(220, 38, 38, 0.8);
@@ -361,18 +386,24 @@ html {
 
 /* Glitch effect */
 @keyframes glitch {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0);
   }
+
   20% {
     transform: translate(-2px, 2px);
   }
+
   40% {
     transform: translate(-2px, -2px);
   }
+
   60% {
     transform: translate(2px, 2px);
   }
+
   80% {
     transform: translate(2px, -2px);
   }
@@ -388,6 +419,7 @@ html {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -399,25 +431,41 @@ html {
 }
 
 /* Staggered children reveal */
-.stagger-children > * {
+.stagger-children>* {
   opacity: 0;
   transform: translateY(20px);
 }
 
-.stagger-children.animate > *:nth-child(1) { animation: reveal-up 0.5s ease-out 0.1s forwards; }
-.stagger-children.animate > *:nth-child(2) { animation: reveal-up 0.5s ease-out 0.2s forwards; }
-.stagger-children.animate > *:nth-child(3) { animation: reveal-up 0.5s ease-out 0.3s forwards; }
-.stagger-children.animate > *:nth-child(4) { animation: reveal-up 0.5s ease-out 0.4s forwards; }
-.stagger-children.animate > *:nth-child(5) { animation: reveal-up 0.5s ease-out 0.5s forwards; }
+.stagger-children.animate>*:nth-child(1) {
+  animation: reveal-up 0.5s ease-out 0.1s forwards;
+}
+
+.stagger-children.animate>*:nth-child(2) {
+  animation: reveal-up 0.5s ease-out 0.2s forwards;
+}
+
+.stagger-children.animate>*:nth-child(3) {
+  animation: reveal-up 0.5s ease-out 0.3s forwards;
+}
+
+.stagger-children.animate>*:nth-child(4) {
+  animation: reveal-up 0.5s ease-out 0.4s forwards;
+}
+
+.stagger-children.animate>*:nth-child(5) {
+  animation: reveal-up 0.5s ease-out 0.5s forwards;
+}
 
 /* Epic border animation */
 @keyframes border-flow {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -439,7 +487,10 @@ html {
 }
 
 /* Smooth focus states */
-input:focus, textarea:focus, button:focus, a:focus {
+input:focus,
+textarea:focus,
+button:focus,
+a:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
 }
@@ -449,7 +500,10 @@ input:focus, textarea:focus, button:focus, a:focus {
    ========================================== */
 
 /* Buttery smooth transitions for all interactive elements */
-a, button, [role="button"], .interactive {
+a,
+button,
+[role="button"],
+.interactive {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -457,6 +511,7 @@ a, button, [role="button"], .interactive {
 .hover-lift {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 .hover-lift:hover {
   transform: translateY(-4px);
 }
@@ -465,9 +520,11 @@ a, button, [role="button"], .interactive {
 .hover-elastic {
   transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
 .hover-elastic:hover {
   transform: scale(1.05);
 }
+
 .hover-elastic:active {
   transform: scale(0.95);
 }
@@ -479,10 +536,13 @@ img {
 
 /* Card selected state pulse animation */
 @keyframes selected-glow-pulse {
-  0%, 100% { 
+
+  0%,
+  100% {
     box-shadow: 0 0 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.2);
   }
-  50% { 
+
+  50% {
     box-shadow: 0 0 50px rgba(220, 38, 38, 0.6), 0 0 100px rgba(220, 38, 38, 0.3);
   }
 }
@@ -496,6 +556,7 @@ img {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
@@ -543,24 +604,29 @@ body {
 
 /* Prevent layout shift during loading */
 .skeleton-loading {
-  background: linear-gradient(90deg, 
-    rgba(220, 38, 38, 0.1) 0%, 
-    rgba(220, 38, 38, 0.2) 50%, 
-    rgba(220, 38, 38, 0.1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(220, 38, 38, 0.1) 0%,
+      rgba(220, 38, 38, 0.2) 50%,
+      rgba(220, 38, 38, 0.1) 100%);
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
 }
 
 @keyframes skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Button press effect */
 .press-effect {
   transition: transform 0.15s ease;
 }
+
 .press-effect:active {
   transform: scale(0.96);
 }
@@ -576,6 +642,7 @@ body {
   background-size: 200% 200%;
   transition: background-position 0.5s ease;
 }
+
 .gradient-shift:hover {
   background-position: 100% 100%;
 }
@@ -591,4 +658,39 @@ body {
   cursor: not-allowed;
   filter: grayscale(0.5);
   transition: all 0.3s ease;
+}
+
+/* ==========================================
+   THEME TRANSITION OPTIMIZATION
+   ========================================== */
+
+/* During theme transition, temporarily reduce rendering load */
+.theme-transitioning #tsparticles {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Disable all blur effects during transition (blur is extremely expensive) */
+.theme-transitioning [style*="blur"],
+.theme-transitioning .blur-3xl,
+.theme-transitioning .blur-2xl,
+.theme-transitioning .blur-xl,
+.theme-transitioning .backdrop-blur-xl,
+.theme-transitioning .backdrop-blur-lg,
+.theme-transitioning .backdrop-blur-md {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Pause all CSS animations during transition */
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
+/* Disable box-shadows temporarily (expensive to recalculate) */
+.theme-transitioning [style*="box-shadow"] {
+  box-shadow: none !important;
 }

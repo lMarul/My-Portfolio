@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { Briefcase, Code, User, Sparkles, Zap, Shield } from "lucide-react";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { Anime3DCard, RevealOnScroll, MorphingShape } from "./AnimeComponents";
 
 /**
@@ -9,6 +11,27 @@ import { Anime3DCard, RevealOnScroll, MorphingShape } from "./AnimeComponents";
 export const EpicAboutSection = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
+
+  // Fetch about content from Convex
+  const aboutContent = useQuery(api.siteContent.getAboutContent);
+
+  // Default/Fallback content
+  const defaultContent = {
+    title: "Passionate Web Developer & Cybersecurity Enthusiast",
+    subtitle: "A passionate developer on a mission to create extraordinary digital experiences",
+    bio: [
+      "With rich experiences in web development from various projects, I am still eager to learn more about other languages, frameworks, and technologies that I can use to create more innovative solutions.",
+      "I'm passionate about exploring new technologies, especially in web development and cybersecurity, constantly pushing the boundaries of what's possible."
+    ],
+    stats: {
+      projects: "10+",
+      technologies: "5+",
+      curiosity: "∞"
+    }
+  };
+
+  // Use fetched content or fallback
+  const content = aboutContent || defaultContent;
 
   useEffect(() => {
     // Staggered card entrance
@@ -101,7 +124,7 @@ export const EpicAboutSection = () => {
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Me</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A passionate developer on a mission to create extraordinary digital experiences
+            {content.subtitle}
           </p>
         </RevealOnScroll>
 
@@ -119,26 +142,21 @@ export const EpicAboutSection = () => {
 
               <div className="relative z-10 space-y-6">
                 <h3 className="text-3xl font-bold font-cinzel text-foreground">
-                  Passionate Web Developer & <span className="text-red-500">Cybersecurity Enthusiast</span>
+                  {content.title}
                 </h3>
 
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  With rich experiences in web development from various projects,
-                  I am still eager to learn more about other languages, frameworks,
-                  and technologies that I can use to create more innovative solutions.
-                </p>
-
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  I'm passionate about exploring new technologies, especially in web development
-                  and cybersecurity, constantly pushing the boundaries of what's possible.
-                </p>
+                {content.bio.map((paragraph, index) => (
+                  <p key={index} className="text-lg text-muted-foreground leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
 
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-4 pt-6">
                   {[
-                    { value: "10+", label: "Projects" },
-                    { value: "5+", label: "Technologies" },
-                    { value: "∞", label: "Curiosity" },
+                    { value: content.stats.projects, label: "Projects" },
+                    { value: content.stats.technologies, label: "Technologies" },
+                    { value: content.stats.curiosity, label: "Curiosity" },
                   ].map((stat, i) => (
                     <div key={i} className="text-center">
                       <div className="text-3xl font-bold text-primary">{stat.value}</div>

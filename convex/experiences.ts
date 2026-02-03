@@ -1,14 +1,17 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
-// Get all experiences sorted by order
+// Get all experiences sorted by start date (most recent first)
 export const get = query({
   args: {},
   handler: async (ctx) => {
-    return await ctx.db
+    const experiences = await ctx.db
       .query("experiences")
-      .withIndex("by_order")
+      .withIndex("by_startDate")
       .collect();
+
+    // Sort in reverse chronological order (newest first)
+    return experiences.sort((a, b) => b.startDate.localeCompare(a.startDate));
   },
 });
 
@@ -46,7 +49,6 @@ export const seed = mutation({
         logo: "https://cdn.simpleicons.org/google",
         color: "#4285F4",
         technologies: ["React", "Firebase", "Flutter", "TensorFlow", "Google Cloud"],
-        order: 1,
       },
       {
         title: "Software Engineer Intern",
@@ -71,7 +73,6 @@ export const seed = mutation({
         logo: "https://cdn.simpleicons.org/react",
         color: "#61DAFB",
         technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
-        order: 2,
       },
       {
         title: "Web Developer (OJT)",
@@ -96,7 +97,6 @@ export const seed = mutation({
         logo: "https://cdn.simpleicons.org/laravel",
         color: "#FF2D20",
         technologies: ["Laravel", "PHP", "MySQL", "Bootstrap", "jQuery"],
-        order: 3,
       },
       {
         title: "Technical Lead",
@@ -121,7 +121,6 @@ export const seed = mutation({
         logo: "https://cdn.simpleicons.org/acm",
         color: "#0085CA",
         technologies: ["C++", "Python", "Java", "Competitive Programming"],
-        order: 4,
       },
       {
         title: "Freelance Developer",
@@ -146,7 +145,6 @@ export const seed = mutation({
         logo: "https://cdn.simpleicons.org/upwork",
         color: "#6FDA44",
         technologies: ["React", "Next.js", "Tailwind CSS", "Supabase", "Vercel"],
-        order: 5,
       },
     ];
 

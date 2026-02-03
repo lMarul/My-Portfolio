@@ -13,6 +13,7 @@ import type * as experiences from "../experiences.js";
 import type * as hackathons from "../hackathons.js";
 import type * as projects from "../projects.js";
 import type * as seed from "../seed.js";
+import type * as siteContent from "../siteContent.js";
 import type * as skills from "../skills.js";
 
 import type {
@@ -27,6 +28,7 @@ declare const fullApi: ApiFromModules<{
   hackathons: typeof hackathons;
   projects: typeof projects;
   seed: typeof seed;
+  siteContent: typeof siteContent;
   skills: typeof skills;
 }>;
 

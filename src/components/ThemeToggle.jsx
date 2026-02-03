@@ -36,12 +36,8 @@ export const ThemeToggle = () => {
 
   const toggleTheme = () => {
     const toggle = toggleRef.current;
-    const thumb = thumbRef.current;
 
-    // Create particle burst effect
-    createParticleBurst();
-
-    // Animate the toggle
+    // Simple scale animation - lightweight
     gsap.to(toggle, {
       scale: 0.95,
       duration: 0.1,
@@ -49,60 +45,34 @@ export const ThemeToggle = () => {
       repeat: 1,
     });
 
-    // Flash effect
-    gsap.fromTo(toggle, 
-      { boxShadow: "0 0 30px rgba(220, 38, 38, 0.8)" },
-      { boxShadow: "0 0 10px rgba(220, 38, 38, 0.3)", duration: 0.5 }
-    );
+    // Pause all GSAP animations globally during theme switch
+    gsap.globalTimeline.pause();
 
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
-    }
-  };
+    // Temporarily reduce rendering load by adding a class that hides heavy elements
+    document.documentElement.classList.add("theme-transitioning");
 
-  const createParticleBurst = () => {
-    const toggle = toggleRef.current;
-    if (!toggle) return;
+    const switchTheme = () => {
+      if (isDarkMode) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+        setIsDarkMode(false);
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+        setIsDarkMode(true);
+      }
+    };
 
-    const rect = toggle.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    // Execute theme switch
+    switchTheme();
 
-    for (let i = 0; i < 12; i++) {
-      const particle = document.createElement("div");
-      const angle = (i / 12) * Math.PI * 2;
-      const distance = 40 + Math.random() * 30;
-
-      particle.style.cssText = `
-        position: fixed;
-        width: 4px;
-        height: 4px;
-        background: ${isDarkMode ? "#fbbf24" : "#dc2626"};
-        border-radius: 50%;
-        pointer-events: none;
-        left: ${centerX}px;
-        top: ${centerY}px;
-        z-index: 10000;
-        box-shadow: 0 0 6px ${isDarkMode ? "#fbbf24" : "#dc2626"};
-      `;
-      document.body.appendChild(particle);
-
-      gsap.to(particle, {
-        x: Math.cos(angle) * distance,
-        y: Math.sin(angle) * distance,
-        opacity: 0,
-        scale: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        onComplete: () => particle.remove(),
-      });
-    }
+    // Resume animations and remove transitioning class after a short delay
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        document.documentElement.classList.remove("theme-transitioning");
+        gsap.globalTimeline.resume();
+      }, 50); // Small delay to let the DOM settle
+    });
   };
 
   return (
@@ -172,13 +142,13 @@ export const ThemeToggle = () => {
         className={cn(
           "absolute top-1 left-1 w-8 h-8 rounded-full shadow-lg flex items-center justify-center",
           "transition-all duration-500 ease-out",
-          isDarkMode 
-            ? "translate-x-10 bg-gradient-to-br from-red-600 to-red-800 shadow-red-500/50" 
+          isDarkMode
+            ? "translate-x-10 bg-gradient-to-br from-red-600 to-red-800 shadow-red-500/50"
             : "translate-x-0 bg-gradient-to-br from-white to-red-100 shadow-red-300/50"
         )}
         style={{
-          boxShadow: isDarkMode 
-            ? "0 0 15px rgba(220, 38, 38, 0.6), inset 0 0 10px rgba(0,0,0,0.3)" 
+          boxShadow: isDarkMode
+            ? "0 0 15px rgba(220, 38, 38, 0.6), inset 0 0 10px rgba(0,0,0,0.3)"
             : "0 0 15px rgba(220, 38, 38, 0.3), inset 0 0 10px rgba(255,255,255,0.5)",
         }}
       >

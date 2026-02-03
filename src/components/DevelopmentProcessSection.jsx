@@ -125,7 +125,6 @@ export const DevelopmentProcessSection = () => {
                 color="rgba(239, 68, 68, 0.1)"
                 size={600}
             />
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(20,20,20,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(20,20,20,0.8)_2px,transparent_2px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
 
             <div className="container mx-auto max-w-6xl relative z-10">
 

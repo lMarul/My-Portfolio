@@ -130,6 +130,7 @@ export const FloatingOrbs = () => {
           filter: "blur(80px)",
           top: "10%",
           left: "10%",
+          willChange: "transform",
           animation: "float-orb-1 20s ease-in-out infinite",
         }}
       />
@@ -142,6 +143,7 @@ export const FloatingOrbs = () => {
           filter: "blur(60px)",
           bottom: "20%",
           right: "10%",
+          willChange: "transform",
           animation: "float-orb-2 25s ease-in-out infinite",
         }}
       />
@@ -155,6 +157,7 @@ export const FloatingOrbs = () => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          willChange: "transform",
           animation: "pulse-orb 8s ease-in-out infinite",
         }}
       />

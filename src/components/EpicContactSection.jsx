@@ -11,6 +11,8 @@ import {
   Github,
   MessageCircle,
 } from "lucide-react";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { RevealOnScroll, MorphingShape, Anime3DCard } from "./AnimeComponents";
 import { useToast } from "@/hooks/use-toast";
 
@@ -23,32 +25,39 @@ export const EpicContactSection = () => {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
 
-  const socialLinks = [
-    { icon: Linkedin, href: "https://www.linkedin.com/in/marwin-john-gonzales-a38509322/", label: "LinkedIn", color: "#0077b5" },
-    { icon: Github, href: "https://github.com", label: "GitHub", color: "#333" },
-    { icon: Facebook, href: "https://www.facebook.com/marwin.john.gonzales.2024/", label: "Facebook", color: "#1877f2" },
-    { icon: Instagram, href: "https://www.instagram.com/maruwinu/", label: "Instagram", color: "#e4405f" },
-    { icon: Mail, href: "mailto:marwinjohngonzales@gmail.com", label: "Email", color: "#ea4335" },
+  // Fetch social links from Convex
+  const socialLinksData = useQuery(api.siteContent.getSocialLinks);
+
+  // Icon mapping
+  const iconMap = {
+    linkedin: Linkedin,
+    github: Github,
+    facebook: Facebook,
+    instagram: Instagram,
+    email: Mail,
+  };
+
+  // Default/Fallback social links
+  const defaultSocialLinks = [
+    { platform: "linkedin", url: "https://www.linkedin.com/in/marwin-john-gonzales-a38509322/", label: "LinkedIn", color: "#0077b5", order: 1, isActive: true },
+    { platform: "github", url: "https://github.com", label: "GitHub", color: "#333", order: 2, isActive: true },
+    { platform: "facebook", url: "https://www.facebook.com/marwin.john.gonzales.2024/", label: "Facebook", color: "#1877f2", order: 3, isActive: true },
+    { platform: "instagram", url: "https://www.instagram.com/maruwinu/", label: "Instagram", color: "#e4405f", order: 4, isActive: true },
+    { platform: "email", url: "mailto:marwinjohngonzales@gmail.com", label: "Email", color: "#ea4335", order: 5, isActive: true },
   ];
+
+  // Map database social links to component format with icons
+  const socialLinks = (socialLinksData || defaultSocialLinks).map(link => ({
+    ...link,
+    icon: iconMap[link.platform] || Mail,
+    href: link.url,
+  }));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Animate social icons
-            anime({
-              targets: ".social-icon",
-              translateY: [50, 0],
-              translateZ: [0, 40],
-              opacity: [0, 1],
-              scale: [0, 1],
-              rotate: [-180, 0],
-              duration: 1000,
-              delay: anime.stagger(100),
-              easing: "easeOutElastic(1, .5)",
-            });
-
             // Animate floating orbs
             anime({
               targets: ".contact-orb",
@@ -99,10 +108,10 @@ export const EpicContactSection = () => {
     const target = e.currentTarget;
     anime({
       targets: target,
-      scale: enter ? 1.2 : 1,
-      translateY: enter ? -10 : 0,
+      scale: enter ? 1.1 : 1, // Reduced scale for subtler effect
+      translateY: enter ? -5 : 0, // Reduced movement
       duration: 300,
-      easing: "easeOutElastic(1, .5)",
+      easing: "easeOutQuad", // Smoother, less bouncy easing
     });
   };
 
@@ -235,7 +244,7 @@ export const EpicContactSection = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="social-icon opacity-0 group relative"
+                      className="social-icon group relative"
                       onMouseEnter={(e) => handleIconHover(e, true)}
                       onMouseLeave={(e) => handleIconHover(e, false)}
                       style={{ transformStyle: "preserve-3d" }}
