@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as certifications from "../certifications.js";
 import type * as experiences from "../experiences.js";
 import type * as hackathons from "../hackathons.js";
 import type * as projects from "../projects.js";
@@ -21,6 +22,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  certifications: typeof certifications;
   experiences: typeof experiences;
   hackathons: typeof hackathons;
   projects: typeof projects;

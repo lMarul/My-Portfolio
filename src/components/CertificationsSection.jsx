@@ -1,56 +1,37 @@
-import { useRef } from "react";
-import { Award, ExternalLink, Calendar, Cloud, Code, Smartphone, Shield, Database } from "lucide-react";
+import { useRef, useState } from "react";
+import { Award, ExternalLink, Calendar, Cloud, Code, Smartphone, Shield, Database, Sparkles } from "lucide-react";
 import { Anime3DCard, RevealOnScroll, MorphingShape } from "./AnimeComponents";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
-// Sample Certifications Data
-const certifications = [
-    {
-        id: 1,
-        title: "AWS Certified Solutions Architect",
-        issuer: "Amazon Web Services",
-        date: "2024",
-        credentialId: "AWS-SCA-2024",
-        icon: Cloud,
-        color: "from-orange-500 to-yellow-500",
-        glow: "rgba(249, 115, 22, 0.4)",
-        skills: ["Cloud Architecture", "Security", "Scalability"]
-    },
-    {
-        id: 2,
-        title: "Professional Cloud Developer",
-        issuer: "Google Cloud",
-        date: "2023",
-        credentialId: "GCP-PCD-2023",
-        icon: Code,
-        color: "from-blue-500 to-cyan-400",
-        glow: "rgba(59, 130, 246, 0.4)",
-        skills: ["GCP", "Kubernetes", "DevOps"]
-    },
-    {
-        id: 3,
-        title: "Meta Front-End Professional",
-        issuer: "Meta",
-        date: "2023",
-        credentialId: "META-FE-2023",
-        icon: Smartphone,
-        color: "from-blue-600 to-indigo-600",
-        glow: "rgba(37, 99, 235, 0.4)",
-        skills: ["React", "JavaScript", "UX/UI"]
-    },
-    {
-        id: 4,
-        title: "Certified Kubernetes Administrator",
-        issuer: "CNCF",
-        date: "2023",
-        credentialId: "CKA-2023",
-        icon: Database,
-        color: "from-blue-400 to-blue-300",
-        glow: "rgba(96, 165, 250, 0.4)",
-        skills: ["Kubernetes", "Container Orchestration", "Linux"]
-    }
-];
+// Icon mapping helper
+const getIcon = (type) => {
+    const map = {
+        cloud: Cloud,
+        code: Code,
+        smartphone: Smartphone,
+        database: Database,
+        shield: Shield,
+        default: Award
+    };
+    return map[type] || map.default;
+};
 
 export const CertificationsSection = () => {
+    const certifications = useQuery(api.certifications.get) || [];
+    const seedCertifications = useMutation(api.certifications.seed);
+    const [isSeeding, setIsSeeding] = useState(false);
+
+    const handleSeed = async () => {
+        setIsSeeding(true);
+        try {
+            await seedCertifications();
+        } catch (error) {
+            console.error("Failed to seed certifications:", error);
+        }
+        setIsSeeding(false);
+    };
+
     return (
         <section id="certifications" className="py-32 px-4 relative overflow-hidden bg-background">
             {/* Background Elements */}
@@ -93,15 +74,41 @@ export const CertificationsSection = () => {
                     </p>
                 </RevealOnScroll>
 
+                {/* Empty State / Seed Button */}
+                {certifications.length === 0 && (
+                    <div className="text-center mb-12">
+                        <button
+                            onClick={handleSeed}
+                            disabled={isSeeding}
+                            className="group px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-red-500 
+                                       text-white font-bold text-lg shadow-[0_0_30px_rgba(220,38,38,0.4)]
+                                       hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] hover:scale-105
+                                       transition-all duration-300 disabled:opacity-50"
+                        >
+                            {isSeeding ? (
+                                <span className="flex items-center gap-2">
+                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/20 border-t-white" />
+                                    Loading...
+                                </span>
+                            ) : (
+                                <span className="flex items-center gap-2">
+                                    <Sparkles className="w-5 h-5" />
+                                    Load Certifications
+                                </span>
+                            )}
+                        </button>
+                    </div>
+                )}
+
                 {/* Certifications Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     {certifications.map((cert, index) => {
-                        const Icon = cert.icon;
+                        const Icon = getIcon(cert.iconType);
                         return (
-                            <RevealOnScroll key={cert.id} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
+                            <RevealOnScroll key={cert._id} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
                                 <Anime3DCard
                                     intensity={10}
-                                    glowColor={cert.glow}
+                                    glowColor={cert.glowColor}
                                     className="h-full"
                                 >
                                     <div className="relative h-full p-8 rounded-3xl bg-card/40 backdrop-blur-md border border-white/10 overflow-hidden group">
@@ -152,9 +159,16 @@ export const CertificationsSection = () => {
                                             </div>
 
                                             {/* External Link Button */}
-                                            <button className="absolute top-8 right-8 p-3 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0">
-                                                <ExternalLink className="w-5 h-5" />
-                                            </button>
+                                            {cert.url && (
+                                                <a
+                                                    href={cert.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="absolute top-8 right-8 p-3 rounded-full bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
+                                                >
+                                                    <ExternalLink className="w-5 h-5" />
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
                                 </Anime3DCard>

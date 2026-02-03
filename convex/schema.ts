@@ -63,23 +63,39 @@ export default defineSchema({
       v.literal("volunteer")
     ),
     location: v.string(), // e.g. "San Francisco, CA" or "Remote"
-    
+
     // Duration
     startDate: v.string(), // ISO date "2024-01"
     endDate: v.optional(v.string()), // null/undefined = Present
     isCurrent: v.boolean(),
-    
+
     // Details
     description: v.string(), // Main description
     responsibilities: v.array(v.string()), // Bullet points
     achievements: v.array(v.string()), // Key accomplishments
-    
+
     // Visual & Meta
     logo: v.optional(v.string()), // Organization logo URL
     color: v.optional(v.string()), // Accent color for the card
     technologies: v.array(v.string()), // Tech stack used
-    
+
     // Sorting
     order: v.number(), // Manual sort order (lower = higher priority)
   }).index("by_order", ["order"]),
+
+  // Certifications Schema
+  certifications: defineTable({
+    title: v.string(),
+    issuer: v.string(),
+    date: v.string(),
+    credentialId: v.string(),
+    url: v.optional(v.string()),
+
+    // Visuals
+    iconType: v.string(), // "cloud", "code", "smartphone", "database", etc.
+    color: v.string(), // Tailwind gradient classes
+    glowColor: v.string(), // CSS RGBA color
+
+    skills: v.array(v.string()),
+  }).index("by_date", ["date"]),
 });
