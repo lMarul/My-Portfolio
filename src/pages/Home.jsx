@@ -11,6 +11,7 @@ import { ExperienceSection } from "../components/ExperienceSection";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { EpicContactSection } from "../components/EpicContactSection";
 import { HackathonSection } from "../components/hackathon";
+import { CertificationsSection } from "../components/CertificationsSection";
 import { CustomCursor } from "../components/CustomCursor";
 import { LoadingScreen } from "../components/LoadingScreen";
 
@@ -86,17 +87,17 @@ export const Home = () => {
     <>
       {/* Epic Loading Screen */}
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      
+
       <div className={`min-h-screen bg-background text-foreground overflow-x-hidden grain ${showContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
         {/* Custom Cursor */}
         <CustomCursor />
-        
+
         {/* Ultimate Particle Background */}
         <UltimateBackground />
 
         {/* Navbar */}
         <Navbar />
-        
+
         {/* Main Content */}
         <main>
           <UltimateHeroSection />
@@ -105,6 +106,7 @@ export const Home = () => {
           <ExperienceSection />
           <HackathonSection />
           <ProjectsSection />
+          <CertificationsSection />
           <EpicContactSection />
         </main>
       </div>

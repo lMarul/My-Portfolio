@@ -11,6 +11,7 @@ const navItems = [
   { name: "Experience", href: "#experience" },
   { name: "Hackathons", href: "#hackathons" },
   { name: "Projects", href: "#projects" },
+  { name: "Certifications", href: "#certifications" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -95,8 +96,8 @@ export const Navbar = () => {
       ref={navRef}
       className={cn(
         "fixed w-full z-50 transition-all duration-500",
-        isScrolled 
-          ? "py-3 bg-background/70 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-border/50" 
+        isScrolled
+          ? "py-3 bg-background/70 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-border/50"
           : "py-5 bg-transparent"
       )}
     >
@@ -135,7 +136,7 @@ export const Navbar = () => {
               >
                 {item.name}
                 {/* Animated underline */}
-                <span 
+                <span
                   className={cn(
                     "nav-underline absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-3/4 rounded-full",
                     "bg-gradient-to-r from-red-500 to-red-600",
@@ -150,7 +151,7 @@ export const Navbar = () => {
               </a>
             );
           })}
-          
+
           {/* Theme Toggle with animation */}
           <div className="nav-item opacity-0 ml-4">
             <ThemeToggle />
