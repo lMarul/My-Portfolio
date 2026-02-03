@@ -5,13 +5,13 @@ import { ThemeToggle } from "./ThemeToggle";
 import anime from "animejs";
 
 const navItems = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/#about" },
-  { name: "Skills", href: "/#skills" },
-  { name: "Experience", href: "/#experience" },
-  { name: "Hackathons", href: "/hackathons" },
   { name: "Projects", href: "/#projects" },
+  { name: "Hackathons", href: "/#hackathons" },
   { name: "Certifications", href: "/#certifications" },
+  { name: "Skills", href: "/#skills" },
+  { name: "Process", href: "/#process" },
+  { name: "Experience", href: "/#experience" },
+  { name: "About", href: "/#about" },
   { name: "Contact", href: "/#contact" },
 ];
 

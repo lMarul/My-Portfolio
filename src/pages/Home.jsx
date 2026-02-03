@@ -11,6 +11,8 @@ import { EpicContactSection } from "../components/EpicContactSection";
 import { HackathonSection } from "../components/hackathon";
 import { CertificationsSection } from "../components/CertificationsSection";
 
+import { DevelopmentProcessSection } from "../components/DevelopmentProcessSection";
+
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,12 +74,13 @@ export const Home = () => {
     <>
       <main>
         <UltimateHeroSection />
-        <EpicAboutSection />
-        <EpicSkillsSection />
-        <ExperienceSection />
-        <HackathonSection />
         <ProjectsSection />
+        <HackathonSection />
         <CertificationsSection />
+        <EpicSkillsSection />
+        <DevelopmentProcessSection />
+        <ExperienceSection />
+        <EpicAboutSection />
         <EpicContactSection />
       </main>
     </>
