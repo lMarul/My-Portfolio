@@ -70,10 +70,10 @@ export const HackathonCarousel = ({
     // Don't clear focusedId here - keep selected card focused
   }, []);
 
-  // Determine if a card should be expanded (hover or selected)
+  // Determine if a card should be expanded (hover ONLY - not selected)
   const isExpanded = useCallback((id) => {
-    return hoveredId === id || selectedId === id;
-  }, [hoveredId, selectedId]);
+    return hoveredId === id;
+  }, [hoveredId]);
 
   // Clear selection when clicking outside (optional - you might want to keep selection)
   useEffect(() => {

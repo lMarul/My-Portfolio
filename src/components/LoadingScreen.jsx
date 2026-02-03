@@ -1,15 +1,27 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 
 /**
- * LoadingScreen - EPIC PORTAL TO A NEW WORLD
- * The user travels through a dimensional rift into your portfolio universe
+ * LoadingScreen - Optimized Portal Effect
+ * Smooth performance with impressive visuals
  */
 export const LoadingScreen = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState("opening");
+  const [phase, setPhase] = useState("awakening");
   const [isExiting, setIsExiting] = useState(false);
   const containerRef = useRef(null);
   const hasCompletedRef = useRef(false);
+
+  // Reduced particle count for performance
+  const spiralParticles = useMemo(() => {
+    return [...Array(20)].map((_, i) => ({
+      id: i,
+      angle: (i / 20) * 360,
+      radius: 30 + Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      speed: 3 + Math.random() * 2,
+      delay: Math.random() * 1.5,
+    }));
+  }, []);
 
   useEffect(() => {
     if (hasCompletedRef.current) return;
@@ -22,90 +34,141 @@ export const LoadingScreen = ({ onComplete }) => {
       const newProgress = Math.min(100, Math.round((elapsed / duration) * 100));
       setProgress(newProgress);
 
-      if (newProgress > 30 && newProgress < 70) {
-        setPhase("traveling");
-      } else if (newProgress >= 70 && newProgress < 100) {
-        setPhase("arriving");
+      if (newProgress < 30) {
+        setPhase("awakening");
+      } else if (newProgress < 60) {
+        setPhase("opening");
+      } else if (newProgress < 90) {
+        setPhase("entering");
+      } else {
+        setPhase("transcending");
       }
 
       if (newProgress >= 100) {
         clearInterval(progressInterval);
         hasCompletedRef.current = true;
-        setPhase("entering");
-        setIsExiting(true);
-
-        // Exit after animation
+        
         setTimeout(() => {
-          if (onComplete) onComplete();
-        }, 600);
+          setIsExiting(true);
+          setTimeout(() => {
+            if (onComplete) onComplete();
+          }, 600);
+        }, 200);
       }
-    }, 30);
+    }, 50);
 
     return () => clearInterval(progressInterval);
   }, [onComplete]);
 
   const phaseMessages = {
-    opening: "Opening dimensional rift...",
-    traveling: "Traveling through the void...",
-    arriving: "Approaching destination...",
-    entering: "Welcome to my universe!",
+    awakening: "Initializing...",
+    opening: "Loading assets...",
+    entering: "Almost there...",
+    transcending: "Welcome!",
   };
+
+  const intensity = progress / 100;
 
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-[10000] flex flex-col items-center justify-center overflow-hidden transition-all duration-500 ${
-        isExiting ? "opacity-0 scale-110" : "opacity-100 scale-100"
+      className={`fixed inset-0 z-[10000] flex flex-col items-center justify-center overflow-hidden transition-opacity duration-500 ${
+        isExiting ? "opacity-0" : "opacity-100"
       }`}
       style={{
-        background: "radial-gradient(ellipse at center, #1a0a0a 0%, #000000 100%)",
+        background: "radial-gradient(ellipse at center, #1a0505 0%, #0a0000 40%, #000000 100%)",
       }}
     >
-      {/* Animated stars background */}
+      {/* Simple stars - reduced count */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(30)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-white"
             style={{
-              width: `${Math.random() * 2 + 1}px`,
-              height: `${Math.random() * 2 + 1}px`,
+              width: `${1 + Math.random()}px`,
+              height: `${1 + Math.random()}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.6 + 0.2,
-              animation: `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`,
+              opacity: 0.3 + Math.random() * 0.4,
             }}
           />
         ))}
       </div>
 
-      {/* The Portal */}
+      {/* Portal Container */}
       <div
-        className={`relative flex items-center justify-center transition-transform duration-500 ${
-          isExiting ? "scale-150" : "scale-100"
-        }`}
-        style={{ width: "300px", height: "300px" }}
+        className="relative flex items-center justify-center"
+        style={{ 
+          width: "300px", 
+          height: "300px",
+          transform: isExiting ? 'scale(2)' : `scale(${0.9 + intensity * 0.2})`,
+          transition: 'transform 0.5s ease-out',
+        }}
       >
-        {/* Outer rings */}
-        {[...Array(5)].map((_, i) => (
+        {/* Outer glow */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: "280px",
+            height: "280px",
+            background: `radial-gradient(circle, rgba(220, 38, 38, ${0.2 + intensity * 0.2}) 0%, transparent 70%)`,
+            filter: `blur(${30 + intensity * 20}px)`,
+          }}
+        />
+
+        {/* Rotating rings */}
+        {[0, 1, 2].map((i) => (
           <div
             key={i}
             className="absolute rounded-full"
             style={{
-              width: `${240 - i * 35}px`,
-              height: `${240 - i * 35}px`,
-              border: `${2.5 - i * 0.3}px solid`,
-              borderColor:
-                i % 2 === 0
-                  ? "rgba(220, 38, 38, 0.8)"
-                  : "rgba(255, 255, 255, 0.3)",
-              boxShadow:
-                i === 0
-                  ? "0 0 30px rgba(220, 38, 38, 0.5), inset 0 0 20px rgba(220, 38, 38, 0.3)"
-                  : "none",
-              animation: `spin ${6 + i * 2}s linear infinite ${
-                i % 2 === 0 ? "" : "reverse"
-              }`,
+              width: `${220 - i * 40}px`,
+              height: `${220 - i * 40}px`,
+              border: `2px solid rgba(220, 38, 38, ${0.6 - i * 0.15})`,
+              animation: `spin ${4 + i}s linear infinite ${i % 2 === 0 ? '' : 'reverse'}`,
+            }}
+          />
+        ))}
+
+        {/* Spiral arms - simplified */}
+        <div
+          className="absolute"
+          style={{
+            width: "200px",
+            height: "200px",
+            animation: 'spin 3s linear infinite',
+          }}
+        >
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <div
+              key={i}
+              className="absolute top-1/2 left-1/2 origin-left"
+              style={{
+                width: "100px",
+                height: "2px",
+                transform: `rotate(${i * 60}deg)`,
+                background: `linear-gradient(90deg, rgba(255, 200, 100, ${intensity}) 0%, rgba(220, 38, 38, ${0.5 * intensity}) 50%, transparent 100%)`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Spiral particles - reduced */}
+        {spiralParticles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute top-1/2 left-1/2 rounded-full"
+            style={{
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              background: particle.id % 2 === 0 ? '#fff' : '#ff6b35',
+              boxShadow: '0 0 4px currentColor',
+              animation: `spiral-in ${particle.speed}s linear infinite`,
+              animationDelay: `${particle.delay}s`,
+              opacity: intensity,
+              '--start-angle': `${particle.angle}deg`,
+              '--start-radius': `${particle.radius}px`,
             }}
           />
         ))}
@@ -114,86 +177,58 @@ export const LoadingScreen = ({ onComplete }) => {
         <div
           className="absolute rounded-full"
           style={{
-            width: "100px",
-            height: "100px",
-            background:
-              "radial-gradient(circle, #ffffff 0%, #dc2626 30%, #7f1d1d 60%, #000000 100%)",
+            width: `${50 + intensity * 20}px`,
+            height: `${50 + intensity * 20}px`,
+            background: `radial-gradient(circle, #fffef0 0%, #ffcc00 30%, #ff6600 60%, #dc2626 80%, transparent 100%)`,
             boxShadow: `
-              0 0 40px rgba(220, 38, 38, 0.8),
-              0 0 80px rgba(220, 38, 38, 0.5),
-              inset 0 0 40px rgba(255, 255, 255, 0.3)
+              0 0 ${20 + intensity * 30}px rgba(255, 200, 50, 0.8),
+              0 0 ${40 + intensity * 40}px rgba(255, 100, 0, 0.5)
             `,
-            animation: "pulse 1.5s ease-in-out infinite",
+            animation: 'pulse 1.5s ease-in-out infinite',
           }}
-        >
-          <div
-            className="absolute inset-2 rounded-full"
-            style={{
-              background:
-                "conic-gradient(from 0deg, transparent, rgba(255,255,255,0.5), transparent, rgba(220,38,38,0.5), transparent)",
-              animation: "spin 2s linear infinite",
-            }}
-          />
-        </div>
-
-        {/* Energy arcs */}
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={`arc-${i}`}
-            className="absolute w-full h-full"
-            style={{ transform: `rotate(${i * 45}deg)` }}
-          >
-            <div
-              className="absolute top-0 left-1/2 w-1 h-16 -translate-x-1/2 rounded-full"
-              style={{
-                background:
-                  "linear-gradient(to top, transparent, rgba(220, 38, 38, 0.8), transparent)",
-                animation: `pulse-arc 1.5s ease-in-out ${i * 0.1}s infinite`,
-              }}
-            />
-          </div>
-        ))}
+        />
       </div>
 
       {/* Text and Progress */}
       <div
         className={`absolute bottom-20 text-center transition-all duration-500 ${
-          isExiting ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
+          isExiting ? "opacity-0 translate-y-5" : "opacity-100"
         }`}
       >
-        <h1 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-wider">
-          <span className="text-red-500">MARWIN</span> JOHN
+        <h1 
+          className="text-4xl font-black text-white mb-2"
+          style={{ textShadow: '0 0 20px rgba(220, 38, 38, 0.5)' }}
+        >
+          <span className="text-red-500">MARWIN</span>
         </h1>
+        
         <p className="text-white/60 text-sm uppercase tracking-[0.3em] mb-6">
           Full Stack Developer
         </p>
 
         {/* Progress bar */}
-        <div className="w-64 md:w-72 mx-auto">
+        <div className="w-64 mx-auto">
           <div className="h-1 bg-white/10 rounded-full overflow-hidden">
             <div
-              className="h-full rounded-full transition-all duration-100"
-              style={{
+              className="h-full rounded-full bg-gradient-to-r from-red-700 via-red-500 to-orange-400"
+              style={{ 
                 width: `${progress}%`,
-                background: "linear-gradient(90deg, #dc2626, #ffffff, #dc2626)",
-                backgroundSize: "200% 100%",
-                animation: "shimmer 1s linear infinite",
+                transition: 'width 0.1s linear',
               }}
             />
           </div>
           <div className="flex justify-between mt-3 text-xs">
             <span className="text-white/50">{phaseMessages[phase]}</span>
-            <span className="text-red-500 font-mono font-bold">{progress}%</span>
+            <span className="text-red-400 font-mono font-bold">{progress}%</span>
           </div>
         </div>
       </div>
 
-      {/* Vignette effect */}
+      {/* Vignette */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%)",
+          background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.8) 100%)',
         }}
       />
 
@@ -206,17 +241,21 @@ export const LoadingScreen = ({ onComplete }) => {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.1); }
         }
-        @keyframes pulse-arc {
-          0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleY(1); }
-          50% { opacity: 1; transform: translateX(-50%) scaleY(1.3); }
-        }
-        @keyframes shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.2; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
+        @keyframes spiral-in {
+          0% {
+            transform: translate(-50%, -50%) 
+                       rotate(var(--start-angle)) 
+                       translateX(var(--start-radius));
+            opacity: 0;
+          }
+          20% { opacity: 1; }
+          80% { opacity: 0.8; }
+          100% {
+            transform: translate(-50%, -50%) 
+                       rotate(calc(var(--start-angle) + 540deg)) 
+                       translateX(0px);
+            opacity: 0;
+          }
         }
       `}</style>
     </div>

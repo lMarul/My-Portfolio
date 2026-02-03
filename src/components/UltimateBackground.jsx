@@ -3,7 +3,8 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
 /**
- * UltimateBackground - Optimized subtle particle background
+ * UltimateBackground - Classic particles.js style background
+ * Based on vincentgarreau.com/particles.js
  */
 export const UltimateBackground = () => {
   const [init, setInit] = useState(false);
@@ -20,38 +21,85 @@ export const UltimateBackground = () => {
     fullScreen: false,
     fpsLimit: 30,
     particles: {
-      color: {
-        value: ["#dc2626", "#ef4444", "#ffffff"],
-      },
-      move: {
-        enable: true,
-        speed: 0.3,
-        direction: "none",
-        random: true,
-        outModes: {
-          default: "out",
+      number: {
+        value: 40,
+        density: {
+          enable: true,
+          area: 1000,
         },
       },
-      number: {
-        value: 25,
-      },
-      opacity: {
-        value: 0.3,
+      color: {
+        value: "#dc2626",
       },
       shape: {
         type: "circle",
       },
+      opacity: {
+        value: 0.5,
+        random: false,
+        animation: {
+          enable: false,
+        },
+      },
       size: {
-        value: { min: 1, max: 2 },
+        value: 2,
+        random: true,
+        animation: {
+          enable: false,
+        },
+      },
+      links: {
+        enable: true,
+        distance: 150,
+        color: "#dc2626",
+        opacity: 0.3,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: {
+          default: "out",
+        },
+        attract: {
+          enable: false,
+        },
       },
     },
     interactivity: {
+      detectsOn: "window",
       events: {
-        onHover: { enable: false },
-        onClick: { enable: false },
+        onHover: {
+          enable: true,
+          mode: "grab",
+        },
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
+        resize: true,
+      },
+      modes: {
+        grab: {
+          distance: 200,
+          links: {
+            opacity: 0.8,
+            color: "#dc2626",
+          },
+        },
+        push: {
+          quantity: 4,
+        },
+        repulse: {
+          distance: 150,
+          duration: 0.4,
+        },
       },
     },
-    detectRetina: false,
+    detectRetina: true,
   }), []);
 
   if (!init) return null;

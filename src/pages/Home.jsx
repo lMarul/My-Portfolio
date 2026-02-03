@@ -7,6 +7,7 @@ import { UltimateBackground } from "../components/UltimateBackground";
 import { UltimateHeroSection } from "../components/UltimateHeroSection";
 import { EpicAboutSection } from "../components/EpicAboutSection";
 import { EpicSkillsSection } from "../components/EpicSkillsSection";
+import { ExperienceSection } from "../components/ExperienceSection";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { EpicContactSection } from "../components/EpicContactSection";
 import { HackathonSection } from "../components/hackathon";
@@ -21,19 +22,20 @@ export const Home = () => {
   const [showContent, setShowContent] = useState(false);
   const lenisRef = useRef(null);
 
-  // Initialize Lenis smooth scrolling
+  // Initialize Lenis smooth scrolling - optimized
   useEffect(() => {
     if (!isLoading && showContent) {
-      // Create Lenis instance
+      // Create Lenis instance with optimized settings
       const lenis = new Lenis({
-        duration: 1.2,
+        duration: 1.0,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
+        wheelMultiplier: 0.8,
+        touchMultiplier: 1.5,
         infinite: false,
+        lerp: 0.1,
       });
 
       lenisRef.current = lenis;
@@ -41,11 +43,12 @@ export const Home = () => {
       // Sync Lenis with GSAP ScrollTrigger
       lenis.on("scroll", ScrollTrigger.update);
 
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-
-      gsap.ticker.lagSmoothing(0);
+      // Use requestAnimationFrame instead of gsap.ticker for better performance
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
 
       // Handle anchor links with smooth scrolling
       const handleAnchorClick = (e) => {
@@ -68,7 +71,6 @@ export const Home = () => {
       return () => {
         document.removeEventListener("click", handleAnchorClick);
         lenis.destroy();
-        gsap.ticker.remove(lenis.raf);
       };
     }
   }, [isLoading, showContent]);
@@ -100,6 +102,7 @@ export const Home = () => {
           <UltimateHeroSection />
           <EpicAboutSection />
           <EpicSkillsSection />
+          <ExperienceSection />
           <HackathonSection />
           <ProjectsSection />
           <EpicContactSection />

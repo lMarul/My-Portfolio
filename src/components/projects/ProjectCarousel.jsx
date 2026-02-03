@@ -51,10 +51,10 @@ export const ProjectCarousel = ({
     setHoveredId(null);
   }, []);
 
-  // Expand on hover OR selected
+  // Expand on hover ONLY (selected cards show mini version with red highlight)
   const isExpanded = useCallback((id) => {
-    return hoveredId === id || selectedId === id;
-  }, [hoveredId, selectedId]);
+    return hoveredId === id;
+  }, [hoveredId]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {

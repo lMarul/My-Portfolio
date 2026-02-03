@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "gsap";
-import anime from "animejs";
-import { ArrowDown, Sparkles, Zap, Star, Rocket } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
 /**
- * UltimateHeroSection - The most epic hero section ever created
- * Now with particles.js for ultimate visual impact
+ * UltimateHeroSection - Epic hero section with particles.js
+ * Optimized particle count for smooth performance
  */
 export const UltimateHeroSection = () => {
   const heroRef = useRef(null);
@@ -24,34 +23,44 @@ export const UltimateHeroSection = () => {
     });
   }, []);
 
-  // Particles configuration - OPTIMIZED for performance
+  // Particles configuration - Optimized for performance
   const particlesOptions = useMemo(() => ({
     fullScreen: false,
     fpsLimit: 30,
     particles: {
       number: {
-        value: 35,
+        value: 50,
         density: {
-          enable: false,
+          enable: true,
+          area: 1000,
         },
       },
       color: {
-        value: ["#dc2626", "#ef4444", "#ffffff"],
+        value: "#dc2626",
       },
       shape: {
         type: "circle",
       },
       opacity: {
-        value: 0.4,
+        value: 0.5,
+        random: false,
       },
       size: {
-        value: { min: 1, max: 2.5 },
+        value: 2.5,
+        random: true,
+      },
+      links: {
+        enable: true,
+        distance: 150,
+        color: "#dc2626",
+        opacity: 0.3,
+        width: 1,
       },
       move: {
         enable: true,
-        speed: 0.5,
+        speed: 1.5,
         direction: "none",
-        random: true,
+        random: false,
         straight: false,
         outModes: {
           default: "out",
@@ -59,16 +68,32 @@ export const UltimateHeroSection = () => {
       },
     },
     interactivity: {
+      detectsOn: "window",
       events: {
         onHover: {
-          enable: false,
+          enable: true,
+          mode: "grab",
         },
         onClick: {
-          enable: false,
+          enable: true,
+          mode: "push",
+        },
+        resize: true,
+      },
+      modes: {
+        grab: {
+          distance: 180,
+          links: {
+            opacity: 0.7,
+            color: "#dc2626",
+          },
+        },
+        push: {
+          quantity: 3,
         },
       },
     },
-    detectRetina: false,
+    detectRetina: true,
   }), []);
 
   useEffect(() => {
@@ -137,46 +162,26 @@ export const UltimateHeroSection = () => {
       className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
       style={{ perspective: "1500px" }}
     >
-      {/* PARTICLES.JS BACKGROUND */}
+      {/* Particles Background */}
       {particlesInit && (
         <Particles
           id="hero-particles"
+          className="absolute inset-0 z-[1]"
           options={particlesOptions}
-          className="absolute inset-0 z-0"
         />
       )}
 
       {/* Static grid background */}
       <div 
-        className="absolute inset-0 opacity-[0.03] z-[1]"
+        className="absolute inset-0 opacity-[0.02] z-[2]"
         style={{
           backgroundImage: `
             linear-gradient(rgba(220,38,38,0.8) 1px, transparent 1px),
             linear-gradient(90deg, rgba(220,38,38,0.8) 1px, transparent 1px)
           `,
-          backgroundSize: "60px 60px",
+          backgroundSize: "80px 80px",
         }}
       />
-
-      {/* Floating decorative elements - SIMPLIFIED */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[2]">
-        <Sparkles 
-          className="absolute text-primary/20 w-6 h-6" 
-          style={{ top: "15%", left: "10%" }} 
-        />
-        <Star 
-          className="absolute text-red-500/20 w-5 h-5" 
-          style={{ top: "25%", right: "15%" }} 
-        />
-        <Zap 
-          className="absolute text-yellow-500/20 w-7 h-7" 
-          style={{ bottom: "30%", left: "8%" }} 
-        />
-        <Rocket 
-          className="absolute text-primary/15 w-8 h-8" 
-          style={{ bottom: "25%", right: "12%" }} 
-        />
-      </div>
 
       {/* Main content */}
       <div className="container max-w-6xl mx-auto text-center z-10">
@@ -197,8 +202,7 @@ export const UltimateHeroSection = () => {
           className="relative mb-8"
         >
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight">
-            <span className="text-red-500">Marwin</span>{" "}
-            <span className="text-white">John</span>
+            <span className="text-red-500">Marwin</span>
           </h1>
         </div>
 
@@ -213,7 +217,6 @@ export const UltimateHeroSection = () => {
                          hover:border-primary/50 hover:bg-primary/20 
                          transition-all duration-300 cursor-default"
             >
-              <Sparkles className="inline w-3 h-3 mr-2 text-primary" />
               {item}
             </span>
           ))}
@@ -239,7 +242,6 @@ export const UltimateHeroSection = () => {
             {/* Shine effect */}
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             <span className="relative flex items-center gap-2">
-              <Rocket className="w-5 h-5" />
               Explore My Work
             </span>
           </a>
@@ -253,36 +255,16 @@ export const UltimateHeroSection = () => {
                        transition-all duration-300"
           >
             <span className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-primary" />
               Let's Connect
             </span>
           </a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <a href="#about" className="flex flex-col items-center gap-2 group cursor-pointer">
-          <span className="text-sm text-muted-foreground uppercase tracking-widest group-hover:text-primary transition-colors">
-            Scroll Down
-          </span>
-          <div className="relative w-6 h-10 border-2 border-primary/40 rounded-full group-hover:border-primary transition-colors">
-            <div 
-              className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-3 bg-primary rounded-full"
-              style={{ animation: "scroll-bounce 1.5s ease-in-out infinite" }}
-            />
-          </div>
-        </a>
-      </div>
-
       <style>{`
         @keyframes gradient-flow {
           0% { background-position: 0% 50%; }
           100% { background-position: 200% 50%; }
-        }
-        @keyframes scroll-bounce {
-          0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-          50% { transform: translateX(-50%) translateY(12px); opacity: 0.5; }
         }
       `}</style>
     </section>
