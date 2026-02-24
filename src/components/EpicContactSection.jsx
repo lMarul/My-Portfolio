@@ -118,7 +118,7 @@ export const EpicContactSection = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="min-h-screen flex flex-col justify-center py-24 px-4 relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center py-12 sm:py-24 px-4 relative overflow-hidden"
       style={{ perspective: "1500px" }}
     >
       {/* Background effects */}
@@ -143,7 +143,7 @@ export const EpicContactSection = () => {
 
       <div className="container mx-auto max-w-5xl relative z-10 flex-1 flex flex-col justify-center">
         {/* Section Title */}
-        <RevealOnScroll className="text-center mb-16">
+        <RevealOnScroll className="text-center mb-8 md:mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <MessageCircle className="w-5 h-5 text-primary" />
             <span className="text-sm uppercase tracking-[0.3em] text-primary font-medium">
@@ -151,7 +151,7 @@ export const EpicContactSection = () => {
             </span>
             <MessageCircle className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 font-cinzel">
             Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Touch</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -160,11 +160,11 @@ export const EpicContactSection = () => {
         </RevealOnScroll>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left - Contact Form */}
           <RevealOnScroll direction="left" delay={200}>
             <Anime3DCard
-              className="rounded-3xl bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-xl border border-border/50 p-8"
+              className="rounded-3xl bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-xl border border-border/50 p-5 sm:p-8"
               intensity={5}
             >
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -232,7 +232,7 @@ export const EpicContactSection = () => {
 
           {/* Right - Social Links & Info */}
           <RevealOnScroll direction="right" delay={400}>
-            <div className="space-y-8">
+              <div className="space-y-6 sm:space-y-8">
               {/* Social Links */}
               <div className="text-center lg:text-left">
                 <h3 className="text-2xl font-bold mb-6">Connect With Me</h3>
@@ -275,7 +275,7 @@ export const EpicContactSection = () => {
 
               {/* Quick Info */}
               <div
-                className="p-8 rounded-3xl bg-gradient-to-br from-card/90 to-card/50 
+                className="p-5 sm:p-8 rounded-3xl bg-gradient-to-br from-card/90 to-card/50 
                            backdrop-blur-xl border border-border/50"
               >
                 <h3 className="text-xl font-bold mb-4">Quick Response</h3>

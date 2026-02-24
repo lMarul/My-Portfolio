@@ -21,7 +21,7 @@ export const CertificationsSection = () => {
     const certifications = certificationsData || [];
 
     return (
-        <section id="certifications" className="py-32 px-4 relative overflow-hidden bg-background">
+        <section id="certifications" className="py-16 md:py-32 px-4 relative overflow-hidden bg-background">
             {/* Background Elements */}
             <MorphingShape
                 className="top-20 -left-20 opacity-30"
@@ -45,7 +45,7 @@ export const CertificationsSection = () => {
 
             <div className="container mx-auto max-w-7xl relative z-10">
                 {/* Header */}
-                <RevealOnScroll className="text-center mb-20">
+                <RevealOnScroll className="text-center mb-10 md:mb-20">
                     <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
                         <Award className="w-5 h-5 text-primary" />
                         <span className="text-sm font-semibold text-primary tracking-wide uppercase">
@@ -53,7 +53,7 @@ export const CertificationsSection = () => {
                         </span>
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 font-cinzel">
                         Certified <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-blue-600">Expertise</span>
                     </h2>
 
@@ -73,7 +73,7 @@ export const CertificationsSection = () => {
                                     glowColor={cert.glowColor}
                                     className="h-full"
                                 >
-                                    <div className="relative h-full p-8 rounded-3xl bg-white/90 dark:bg-card/40 backdrop-blur-md border border-black/5 dark:border-white/10 overflow-hidden group shadow-lg dark:shadow-none">
+                                    <div className="relative h-full p-5 sm:p-8 rounded-3xl bg-white/90 dark:bg-card/40 backdrop-blur-md border border-black/5 dark:border-white/10 overflow-hidden group shadow-lg dark:shadow-none">
                                         {/* Gradient Background on Hover */}
                                         <div className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 

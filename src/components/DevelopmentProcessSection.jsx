@@ -102,7 +102,7 @@ export const DevelopmentProcessSection = () => {
                         scrollTrigger: {
                             trigger: card,
                             start: "top 85%",
-                            toggleActions: "play none none reverse"
+                            toggleActions: "play none none none"
                         }
                     }
                 );
@@ -117,7 +117,7 @@ export const DevelopmentProcessSection = () => {
         <section
             ref={sectionRef}
             id="process"
-            className="py-32 px-4 relative overflow-hidden bg-background"
+            className="py-16 md:py-32 px-4 relative overflow-hidden bg-background"
         >
             {/* Background Ambience */}
             <MorphingShape
@@ -129,7 +129,7 @@ export const DevelopmentProcessSection = () => {
             <div className="container mx-auto max-w-6xl relative z-10">
 
                 {/* Section Header */}
-                <RevealOnScroll className="text-center mb-24">
+                <RevealOnScroll className="text-center mb-12 md:mb-24">
                     <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
                         <Zap className="w-4 h-4 text-primary animate-pulse" />
                         <span className="text-sm font-semibold text-primary tracking-widest uppercase">
@@ -137,7 +137,7 @@ export const DevelopmentProcessSection = () => {
                         </span>
                     </div>
 
-                    <h2 className="text-4xl md:text-7xl font-black mb-6 font-cinzel tracking-tight">
+                    <h2 className="text-3xl md:text-6xl lg:text-7xl font-black mb-6 font-cinzel tracking-tight">
                         My <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-red-600">Process</span>
                     </h2>
 
@@ -172,7 +172,7 @@ export const DevelopmentProcessSection = () => {
                                         className="h-full"
                                         glowColor={step.color}
                                     >
-                                        <div className="relative p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-colors duration-500 will-change-transform">
+                                        <div className="relative p-5 sm:p-8 rounded-3xl bg-card/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-colors duration-500 will-change-transform">
                                             {/* Hover Gradient */}
                                             <div
                                                 className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"

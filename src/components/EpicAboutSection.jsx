@@ -102,7 +102,7 @@ export const EpicAboutSection = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-32 px-4 relative overflow-hidden bg-background"
+      className="py-16 md:py-32 px-4 relative overflow-hidden bg-background"
       style={{ perspective: "1500px" }}
     >
       {/* Floating morphing shapes */}
@@ -111,7 +111,7 @@ export const EpicAboutSection = () => {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Section Title */}
-        <RevealOnScroll className="text-center mb-16">
+          <RevealOnScroll className="text-center mb-8 md:mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-5 h-5 text-primary" />
             <span className="text-sm uppercase tracking-[0.3em] text-primary font-medium">
@@ -119,7 +119,7 @@ export const EpicAboutSection = () => {
             </span>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 font-cinzel">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Me</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -132,7 +132,7 @@ export const EpicAboutSection = () => {
           {/* Left side - Bio */}
           <RevealOnScroll direction="left" delay={200}>
             <div
-              className="relative p-8 rounded-3xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border border-border/50"
+              className="relative p-5 sm:p-8 rounded-3xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border border-border/50"
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Decorative elements */}
@@ -189,7 +189,7 @@ export const EpicAboutSection = () => {
               <Anime3DCard
                 key={index}
                 className={`about-card opacity-0 rounded-2xl bg-gradient-to-br from-card/90 to-card/50 
-                           backdrop-blur-xl border border-border/50 p-6 cursor-pointer
+                           backdrop-blur-xl border border-border/50 p-4 sm:p-6 cursor-pointer
                            hover:border-primary/50 transition-colors duration-300`}
                 intensity={10}
               >

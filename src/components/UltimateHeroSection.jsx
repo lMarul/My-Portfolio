@@ -110,7 +110,7 @@ export const UltimateHeroSection = () => {
 
             {/* Name */}
             <div>
-              <h1 className="hero-name text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight whitespace-nowrap">
+              <h1 className="hero-name text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight">
                 <span className="text-red-500 relative inline-block">
                   {content.title}
                   <svg 
@@ -204,13 +204,13 @@ export const UltimateHeroSection = () => {
           </div>
 
           {/* Right Column - Profile Image */}
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div ref={imageRef} className="relative">
+          <div className="relative flex items-center justify-center lg:justify-end order-first lg:order-last">
+            <div ref={imageRef} className="relative flex justify-center">
               {/* Decorative elements */}
               <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-2xl blur-2xl opacity-50 animate-pulse" />
               
               {/* Image container */}
-              <div className="relative w-[320px] h-[400px] sm:w-[400px] sm:h-[500px] rounded-2xl overflow-hidden border-4 border-border bg-card shadow-2xl">
+              <div className="relative w-[260px] h-[320px] sm:w-[340px] sm:h-[420px] lg:w-[380px] lg:h-[480px] rounded-2xl overflow-hidden border-4 border-border bg-card shadow-2xl">
                 <img
                   src={isDarkMode ? "/profile-dark.png" : "/profile-light.png"}
                   alt={content.title}

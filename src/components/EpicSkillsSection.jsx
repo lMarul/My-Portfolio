@@ -138,7 +138,7 @@ export const EpicSkillsSection = () => {
     <section
       id="skills"
       ref={containerRef}
-      className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background"
+      className="py-16 md:py-32 px-4 relative overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background"
       style={{ perspective: "1500px" }}
     >
       {/* Animated background grid */}
@@ -159,7 +159,7 @@ export const EpicSkillsSection = () => {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Section Title */}
-        <RevealOnScroll className="text-center mb-16">
+        <RevealOnScroll className="text-center mb-8 md:mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-5 h-5 text-primary" />
             <span className="text-sm uppercase tracking-[0.3em] text-primary font-medium">
@@ -167,7 +167,7 @@ export const EpicSkillsSection = () => {
             </span>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 font-cinzel">
             Skills & <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">Technologies</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -210,10 +210,10 @@ export const EpicSkillsSection = () => {
               intensity={12}
               glowColor="rgba(220, 38, 38, 0.3)"
             >
-              <div
-                className="group relative p-6 rounded-2xl bg-gradient-to-br from-card/90 to-card/50 
-                           backdrop-blur-xl border border-border/50 hover:border-primary/50
-                           transition-all duration-300 cursor-pointer overflow-hidden"
+          <div
+              className="group relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-card/90 to-card/50 
+                         backdrop-blur-xl border border-border/50 hover:border-primary/50
+                         transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

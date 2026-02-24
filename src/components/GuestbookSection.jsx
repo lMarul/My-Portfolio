@@ -106,10 +106,10 @@ export function GuestbookSection() {
   };
 
   return (
-    <section className="py-24 px-6 relative bg-background">
+    <section className="py-12 sm:py-24 px-4 sm:px-6 relative bg-background">
       <div className="max-w-xl mx-auto">
         {/* Header */}
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <div className="flex items-center gap-3 mb-4">
             <MessageSquare className="w-8 h-8 text-primary" />
             <h2 className="text-4xl md:text-5xl font-bold">
@@ -130,7 +130,7 @@ export function GuestbookSection() {
 
         {/* Comment Form */}
         <div className="mb-12">
-          <div className="glass-panel p-8 rounded-2xl border border-accent/20">
+          <div className="glass-panel p-5 sm:p-8 rounded-2xl border border-accent/20">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
               {editingId ? (
                 <>

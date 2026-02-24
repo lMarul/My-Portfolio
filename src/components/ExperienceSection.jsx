@@ -83,9 +83,8 @@ const ExperienceCard = ({ experience, index, isActive, onClick }) => {
     <motion.div
       ref={cardRef}
       className={cn(
-        "experience-card relative cursor-pointer group",
-        "transition-all duration-500 ease-out",
-        isActive ? "scale-100" : "scale-95 opacity-80 hover:opacity-100"
+        "experience-card relative group",
+        "transition-all duration-500 ease-out"
       )}
       initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +108,7 @@ const ExperienceCard = ({ experience, index, isActive, onClick }) => {
       {/* Card Content */}
       <div
         className={cn(
-          "relative rounded-2xl p-6 backdrop-blur-xl border transition-all duration-300",
+          "relative rounded-2xl p-4 sm:p-6 backdrop-blur-xl border transition-all duration-300",
           "bg-gradient-to-br from-card/90 to-card/70",
           isActive
             ? "border-primary/50 shadow-[0_0_40px_rgba(220,38,38,0.2)]"
@@ -489,7 +488,7 @@ const ExperienceSectionContent = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="py-32 px-4 relative overflow-hidden bg-background"
+      className="py-16 md:py-32 px-4 relative overflow-hidden bg-background"
     >
       {/* Floating particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
@@ -508,7 +507,7 @@ const ExperienceSectionContent = () => {
             </span>
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 font-cinzel">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 font-cinzel">
             Work{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">
               Experience
