@@ -15,11 +15,19 @@ export const ProjectCarousel = ({
 }) => {
   const [hoveredId, setHoveredId] = useState(null);
   const [focusedId, setFocusedId] = useState(null);
-  const [selectedId, setSelectedId] = useState(null); // NEW: Track selected card
+  const [selectedId, setSelectedId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
   
-  const visibleCount = 6;
+  const visibleCount = isMobile ? 4 : 6;
   const totalPages = Math.ceil(projects.length / visibleCount);
   
   const visibleProjects = projects.slice(
@@ -104,7 +112,8 @@ export const ProjectCarousel = ({
       )}
 
       <div
-        className="flex gap-2 px-1 py-2 pr-6 overflow-visible"
+        className="flex gap-2 px-1 py-2 overflow-x-auto sm:overflow-visible sm:pr-6"
+        style={{ scrollbarWidth: "none" }}
       >
         {visibleProjects.map((project, index) => {
           const expanded = isExpanded(project._id);
@@ -127,7 +136,7 @@ export const ProjectCarousel = ({
               }}
               style={{
                 flex: expanded ? "3 0 0%" : "1 0 0%",
-                minWidth: expanded ? "300px" : "120px",
+                minWidth: expanded ? (isMobile ? "180px" : "300px") : (isMobile ? "80px" : "120px"),
                 transition: "all 0.4s ease-in-out",
               }}
             >

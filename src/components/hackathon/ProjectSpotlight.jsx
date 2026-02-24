@@ -142,10 +142,10 @@ export const ProjectSpotlight = ({ project, className }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
         {/* Bottom Content Area - Strict Left/Right Split - TOP ALIGNED */}
-        <div className="absolute bottom-0 w-full p-5 lg:p-6 pr-24">
-          <div className="flex gap-8 items-start">
+        <div className="absolute bottom-0 w-full p-4 sm:p-5 lg:p-6 sm:pr-24">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 items-start">
             {/* LEFT SECTION: Title, Organizer, Date - LEFT ALIGNED */}
-            <div className="flex-shrink-0 w-[40%]">
+            <div className="flex-shrink-0 w-full sm:w-[40%]">
               {/* Organizer Badge */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -188,7 +188,7 @@ export const ProjectSpotlight = ({ project, className }) => {
             </div>
 
             {/* RIGHT SECTION: Description, Tags, Links - RIGHT ALIGNED - TOP ALIGNED */}
-            <div className="flex-1 flex flex-col items-end">
+            <div className="hidden sm:flex flex-1 flex-col items-end">
               {/* Description - RIGHT ALIGNED */}
               <motion.p
                 initial={{ opacity: 0, x: 20 }}
@@ -266,7 +266,7 @@ export const ProjectSpotlight = ({ project, className }) => {
         </div>
 
         {/* Alarm Clock Gallery - TOP-RIGHT CORNER (Infinite Vertical Carousel) */}
-        <div className="absolute top-4 right-4 flex flex-col gap-1.5">
+        <div className="hidden sm:flex absolute top-4 right-4 flex-col gap-1.5">
           {visibleGalleryImages.map((item, idx) => {
             const isCenter = item.position === 2;
             const isActive = activeImage === item.image;

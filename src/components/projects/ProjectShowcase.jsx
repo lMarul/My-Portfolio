@@ -85,10 +85,10 @@ export const ProjectShowcase = ({ project, className }) => {
         />
 
         {/* Content */}
-        <div className="absolute bottom-0 w-full p-5 lg:p-6 pr-8">
-          <div className="flex gap-8 items-start">
+        <div className="absolute bottom-0 w-full p-4 sm:p-5 lg:p-6">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 items-start">
             {/* Left Section */}
-            <div className="flex-shrink-0 w-[40%]">
+            <div className="flex-shrink-0 w-full sm:w-[40%]">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -130,7 +130,7 @@ export const ProjectShowcase = ({ project, className }) => {
             </div>
 
             {/* Right Section */}
-            <div className="flex-1 flex flex-col items-end">
+            <div className="hidden sm:flex flex-1 flex-col items-end">
               <motion.p
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
