@@ -26,7 +26,7 @@ export const ProjectShowcase = ({ project, className }) => {
         )}
       >
         <div className="text-center">
-          <Sparkles className="w-10 h-10 text-red-500/50 mx-auto mb-3 animate-pulse" />
+          <Sparkles className="w-8 h-8 text-red-500/50 mx-auto mb-2 animate-pulse" />
           <p className="text-muted-foreground">Select a project to view details</p>
         </div>
       </div>
@@ -85,8 +85,8 @@ export const ProjectShowcase = ({ project, className }) => {
         />
 
         {/* Content */}
-        <div className="absolute bottom-0 w-full p-8 lg:p-10 pr-32">
-          <div className="flex gap-12 items-start">
+        <div className="absolute bottom-0 w-full p-5 lg:p-6 pr-8">
+          <div className="flex gap-8 items-start">
             {/* Left Section */}
             <div className="flex-shrink-0 w-[40%]">
               <motion.div
@@ -107,7 +107,7 @@ export const ProjectShowcase = ({ project, className }) => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 }}
-                className="text-4xl lg:text-5xl font-black text-white mb-3 leading-tight drop-shadow-lg text-left"
+                className="text-2xl lg:text-3xl font-black text-white mb-2 leading-tight drop-shadow-lg text-left"
               >
                 {project.title}
               </motion.h2>
@@ -135,7 +135,7 @@ export const ProjectShowcase = ({ project, className }) => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-white/90 leading-relaxed mb-4 drop-shadow-md line-clamp-3 text-right max-w-2xl"
+                className="text-white/90 leading-relaxed mb-3 drop-shadow-md line-clamp-2 text-right max-w-2xl text-sm"
               >
                 {project.description}
               </motion.p>
@@ -144,7 +144,7 @@ export const ProjectShowcase = ({ project, className }) => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-wrap gap-2 mb-4 justify-end"
+                className="flex flex-wrap gap-1.5 mb-3 justify-end"
               >
                 {project.tags.map((tag) => (
                   <span
@@ -169,9 +169,9 @@ export const ProjectShowcase = ({ project, className }) => {
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-full bg-white text-black font-bold
+                    className="px-4 py-2 rounded-full bg-white text-black font-bold
                                hover:bg-red-50 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]
-                               transition-all duration-300 flex items-center gap-2"
+                               transition-all duration-300 flex items-center gap-2 text-sm"
                   >
                     <Github size={16} />
                     Code
@@ -182,12 +182,12 @@ export const ProjectShowcase = ({ project, className }) => {
                     href={project.links.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-full bg-red-500/20 backdrop-blur-sm text-white font-bold
+                    className="px-4 py-2 rounded-full bg-red-500/20 backdrop-blur-sm text-white font-bold
                                border border-red-500/40 hover:bg-red-500/40 hover:border-red-400
                                hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]
-                               transition-all duration-300 flex items-center gap-2"
+                               transition-all duration-300 flex items-center gap-2 text-sm"
                   >
-                    <ExternalLink size={16} />
+                    <ExternalLink size={14} />
                     Live Demo
                   </a>
                 )}
@@ -196,10 +196,10 @@ export const ProjectShowcase = ({ project, className }) => {
                     href={project.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-full bg-red-500/20 backdrop-blur-sm text-white font-bold
+                    className="px-4 py-2 rounded-full bg-red-500/20 backdrop-blur-sm text-white font-bold
                                border border-red-500/40 hover:bg-red-500/40 hover:border-red-400
                                hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]
-                               transition-all duration-300 flex items-center gap-2"
+                               transition-all duration-300 flex items-center gap-2 text-sm"
                   >
                     <ExternalLink size={16} />
                     Visit

@@ -20,7 +20,7 @@
       "Enhanced member engagement through improved event coordination",
       "Strengthened interdepartmental communication and collaboration"
     ],
-    "logo": "https://cdn.simpleicons.org/security",
+    "logo": "/org-logos/JISSA.png",
     "color": "#FF6B6B",
     "technologies": ["Leadership", "Event Management", "Event Planning"]
   },
@@ -45,7 +45,7 @@
       "Successfully represented APC-SPEAKS in various institutional events",
       "Fostered culture of excellence in public speaking and debate"
     ],
-    "logo": "https://cdn.simpleicons.org/googlemeet",
+    "logo": "/org-logos/SPEAKS.png",
     "color": "#00897B",
     "technologies": ["Public Speaking", "Leadership"]
   },
@@ -70,7 +70,7 @@
       "Improved development efficiency through strategic planning",
       "Maintained high quality standards across all projects"
     ],
-    "logo": "https://cdn.simpleicons.org/python",
+    "logo": "/org-logos/JPCS.png",
     "color": "#3776AB",
     "technologies": ["Quality Assurance", "Project Planning", "Software Documentation"]
   },
@@ -95,7 +95,7 @@
       "Successfully coordinated resources across various activities",
       "Enhanced operational efficiency through improved logistics management"
     ],
-    "logo": "https://cdn.simpleicons.org/trello",
+    "logo": "/org-logos/SOAR.png",
     "color": "#0079BF",
     "technologies": ["Logistics Management"]
   },
@@ -120,7 +120,7 @@
       "Optimized resource allocation and venue coordination",
       "Led logistics team to deliver seamless event execution"
     ],
-    "logo": "https://cdn.simpleicons.org/microsoft",
+    "logo": "/org-logos/MSC.png",
     "color": "#5E5E5E",
     "technologies": ["Logistics Management"]
   },
@@ -145,7 +145,7 @@
       "Maintained smooth operations during high-intensity esports events",
       "Optimized equipment management and venue coordination"
     ],
-    "logo": "https://cdn.simpleicons.org/steam",
+    "logo": "/org-logos/GG.png",
     "color": "#00ADEE",
     "technologies": ["Logistic Support"]
   },
@@ -170,7 +170,7 @@
       "Contributed to seamless execution of JISSA events",
       "Enhanced coordination between multiple committees"
     ],
-    "logo": "https://cdn.simpleicons.org/security",
+    "logo": "/org-logos/JISSA.png",
     "color": "#FF6B6B",
     "technologies": ["Operations Administration", "Event Management", "Logistic Support", "Logistics Management"]
   },
@@ -195,7 +195,7 @@
       "Contributed to successful execution of community events",
       "Built strong foundation in logistics management"
     ],
-    "logo": "https://cdn.simpleicons.org/microsoft",
+    "logo": "/org-logos/MSC.png",
     "color": "#5E5E5E",
     "technologies": ["Logistic Support", "Logistics Management"]
   },
@@ -220,7 +220,7 @@
       "Built strong foundation in IT and computer science",
       "Developed professional network within tech community"
     ],
-    "logo": "https://cdn.simpleicons.org/python",
+    "logo": "/org-logos/JPCS.png",
     "color": "#3776AB",
     "technologies": ["Team Building"]
   },
@@ -246,7 +246,7 @@
       "Developed professional communication skills in government setting",
       "Adapted quickly to workplace culture and professional environment"
     ],
-    "logo": "https://cdn.simpleicons.org/healthcare",
+    "logo": "/org-logos/taguig-sanitation.png",
     "color": "#DC143C",
     "technologies": ["Database Management", "Data Entry", "Health Information Systems"]
   }

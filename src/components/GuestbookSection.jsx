@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
-import { MessageSquare, Send, User, Globe, Loader2, Trash2, Edit2 } from "lucide-react";
+import { MessageSquare, Send, User, Loader2, Trash2, Edit2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export function GuestbookSection() {
@@ -14,8 +14,6 @@ export function GuestbookSection() {
 
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    website: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,8 +39,6 @@ export function GuestbookSection() {
           id: editingId,
           name: formData.name,
           message: formData.message,
-          email: formData.email || undefined,
-          website: formData.website || undefined,
         });
         toast({
           title: "Success",
@@ -53,8 +49,6 @@ export function GuestbookSection() {
         await createComment({
           name: formData.name,
           message: formData.message,
-          email: formData.email || undefined,
-          website: formData.website || undefined,
         });
         toast({
           title: "Success",
@@ -62,7 +56,7 @@ export function GuestbookSection() {
         });
       }
 
-      setFormData({ name: "", email: "", website: "", message: "" });
+      setFormData({ name: "", message: "" });
     } catch (error) {
       toast({
         title: "Error",
@@ -77,8 +71,6 @@ export function GuestbookSection() {
   const handleEdit = (comment) => {
     setFormData({
       name: comment.name,
-      email: comment.email || "",
-      website: comment.website || "",
       message: comment.message,
     });
     setEditingId(comment._id);
@@ -115,10 +107,10 @@ export function GuestbookSection() {
 
   return (
     <section className="py-24 px-6 relative bg-background">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-4">
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-4">
             <MessageSquare className="w-8 h-8 text-primary" />
             <h2 className="text-4xl md:text-5xl font-bold">
               <span className="bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-sm">
@@ -151,41 +143,22 @@ export function GuestbookSection() {
               )}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2" htmlFor="name">
-                    Name <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <input
-                      type="text"
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Your name"
-                      className="w-full pl-10 pr-4 py-3 bg-background/50 border border-accent/20 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
-                      required
-                      maxLength={50}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2" htmlFor="website">
-                    Website / Social Link
-                  </label>
-                  <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <input
-                      type="url"
-                      id="website"
-                      value={formData.website}
-                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                      placeholder="https://..."
-                      className="w-full pl-10 pr-4 py-3 bg-background/50 border border-accent/20 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
-                    />
-                  </div>
+              <div>
+                <label className="block text-sm font-medium mb-2" htmlFor="name">
+                  Name <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Your name"
+                    className="w-full pl-10 pr-4 py-3 bg-background/50 border border-accent/20 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all dark:placeholder:text-white/50"
+                    required
+                    maxLength={50}
+                  />
                 </div>
               </div>
 
@@ -199,7 +172,7 @@ export function GuestbookSection() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Leave your message here..."
                   rows={4}
-                  className="w-full px-4 py-3 bg-background/50 border border-accent/20 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all resize-none"
+                  className="w-full px-4 py-3 bg-background/50 border border-accent/20 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all resize-none dark:placeholder:text-white/50"
                   required
                   maxLength={500}
                 />
@@ -231,7 +204,7 @@ export function GuestbookSection() {
                     type="button"
                     onClick={() => {
                       setEditingId(null);
-                      setFormData({ name: "", email: "", website: "", message: "" });
+                      setFormData({ name: "", message: "" });
                     }}
                     className="btn-secondary px-6 py-3 rounded-lg font-medium"
                   >
@@ -273,18 +246,7 @@ export function GuestbookSection() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          {comment.website ? (
-                            <a
-                              href={comment.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-semibold hover:text-accent transition-colors"
-                            >
-                              {comment.name}
-                            </a>
-                          ) : (
                             <span className="font-semibold">{comment.name}</span>
-                          )}
                         </div>
                         <p className="text-xs text-muted-foreground">
                           {formatDate(comment.createdAt)}

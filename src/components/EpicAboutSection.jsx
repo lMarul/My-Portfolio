@@ -128,7 +128,7 @@ export const EpicAboutSection = () => {
         </RevealOnScroll>
 
         {/* Main content grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left side - Bio */}
           <RevealOnScroll direction="left" delay={200}>
             <div

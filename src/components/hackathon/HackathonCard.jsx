@@ -39,7 +39,7 @@ export const HackathonCard = ({
       }}
       className={cn(
         "relative cursor-pointer rounded-2xl overflow-hidden group",
-        "h-[280px]",
+        "h-[160px]",
         "transition-all duration-500",
         // Hover state - subtle glow
         !isSelected && "hover:shadow-[0_0_30px_rgba(220,38,38,0.2)]",
@@ -111,7 +111,7 @@ export const HackathonCard = ({
 
       {/* Default State Content */}
       <motion.div
-        className="absolute inset-0 flex flex-col justify-end p-6"
+        className="absolute inset-0 flex flex-col justify-end p-3"
         initial={false}
         animate={{ 
           opacity: isExpanded ? 0 : 1,
@@ -120,13 +120,13 @@ export const HackathonCard = ({
         transition={{ duration: 0.25 }}
       >
         <h3 className={cn(
-          "text-xl font-bold line-clamp-2 drop-shadow-lg text-center transition-colors",
+          "text-sm font-bold line-clamp-2 drop-shadow-lg text-center transition-colors",
           isSelected ? "text-red-100" : "text-white group-hover:text-red-50"
         )}>
           {project.title}
         </h3>
         <p className={cn(
-          "text-sm font-medium drop-shadow-md text-center mt-2 transition-colors",
+          "text-xs font-medium drop-shadow-md text-center mt-1 transition-colors",
           isSelected ? "text-red-300" : "text-gray-300 group-hover:text-white/90"
         )}>
           {project.organizer}
@@ -136,7 +136,7 @@ export const HackathonCard = ({
 
       {/* Expanded State Content */}
       <motion.div
-        className="absolute inset-0 flex flex-col justify-end p-6"
+        className="absolute inset-0 flex flex-col justify-end p-3"
         initial={false}
         animate={{ 
           opacity: isExpanded ? 1 : 0,
@@ -145,16 +145,16 @@ export const HackathonCard = ({
         transition={{ duration: 0.25, delay: isExpanded ? 0.1 : 0 }}
         style={{ pointerEvents: isExpanded ? "auto" : "none" }}
       >
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           {/* Left Column */}
           <div className="flex-shrink-0 w-[40%] flex flex-col justify-end">
-            <h3 className="text-2xl font-bold text-white leading-tight line-clamp-2 drop-shadow-lg">
+            <h3 className="text-base font-bold text-white leading-tight line-clamp-2 drop-shadow-lg">
               {project.title}
             </h3>
-            <p className="text-sm text-red-200 mt-2 font-medium drop-shadow-md">
+            <p className="text-xs text-red-200 mt-1 font-medium drop-shadow-md">
               {project.organizer}
             </p>
-            <p className="text-xs text-gray-300 mt-1 drop-shadow">
+            <p className="text-[10px] text-gray-300 mt-0.5 drop-shadow">
               {new Date(project.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -164,7 +164,7 @@ export const HackathonCard = ({
 
           {/* Right Column */}
           <div className="flex-1 flex flex-col justify-end">
-            <p className="text-xs text-gray-200 leading-relaxed line-clamp-4 mb-3 drop-shadow">
+            <p className="text-[10px] text-gray-200 leading-relaxed line-clamp-3 mb-2 drop-shadow">
               {project.description}
             </p>
 

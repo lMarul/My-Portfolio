@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import experiencesData from "@/data/experiences.json";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -155,7 +155,6 @@ const ExperienceCard = ({ experience, index, isActive, onClick }) => {
                 src={experience.logo}
                 alt={experience.organization}
                 className="w-8 h-8 object-contain"
-                style={{ filter: "brightness(0) invert(1)" }}
               />
             ) : (
               <Icon
@@ -271,7 +270,7 @@ const ExperienceDetails = ({ experience }) => {
         <div className="flex items-start gap-6 mb-8 pb-6 border-b border-border/50">
           {/* Large logo */}
           <div
-            className="w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30"
+            className="w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 bg-background/80 border border-border/30"
             style={{
               boxShadow: `0 0 40px ${experience.color || "#dc2626"}30`,
             }}
@@ -281,7 +280,6 @@ const ExperienceDetails = ({ experience }) => {
                 src={experience.logo}
                 alt={experience.organization}
                 className="w-12 h-12 object-contain"
-                style={{ filter: "brightness(0) invert(1)" }}
               />
             ) : (
               <Icon
@@ -426,18 +424,10 @@ export const ExperienceSection = () => {
 
 const ExperienceSectionContent = () => {
   const experiences = experiencesData || [];
-  const [activeExperience, setActiveExperience] = useState(null);
 
   const sectionRef = useRef(null);
   const timelineRef = useRef(null);
   const particlesRef = useRef(null);
-
-  // Set initial active experience
-  useEffect(() => {
-    if (experiences.length > 0 && !activeExperience) {
-      setActiveExperience(experiences[0]);
-    }
-  }, [experiences, activeExperience]);
 
   // GSAP Timeline animation
   useEffect(() => {
@@ -454,7 +444,7 @@ const ExperienceSectionContent = () => {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 60%",
-              toggleActions: "play none none reverse",
+              toggleActions: "play none none none",
             },
           }
         );
@@ -495,20 +485,6 @@ const ExperienceSectionContent = () => {
     return () => ctx.revert();
   }, [experiences.length]);
 
-
-
-  // Calculate total experience
-  const totalYears = useMemo(() => {
-    if (experiences.length === 0) return 0;
-    let totalMonths = 0;
-    experiences.forEach((exp) => {
-      const start = new Date(exp.startDate + "-01");
-      const end = exp.isCurrent || !exp.endDate ? new Date() : new Date(exp.endDate + "-01");
-      totalMonths += (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
-    });
-    return Math.floor(totalMonths / 12);
-  }, [experiences]);
-
   return (
     <section
       id="experience"
@@ -522,9 +498,9 @@ const ExperienceSectionContent = () => {
       <div className="absolute top-40 -left-60 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-40 -right-60 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="container mx-auto max-w-4xl relative z-10">
         {/* Section Header */}
-        <RevealOnScroll className="text-center mb-16">
+        <RevealOnScroll className="mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-5 h-5 text-primary" />
             <span className="text-sm uppercase tracking-[0.3em] text-primary font-medium">
@@ -538,29 +514,9 @@ const ExperienceSectionContent = () => {
               Experience
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground">
             A timeline of roles, responsibilities, and growth across various organizations
           </p>
-
-          {/* Stats */}
-          <div className="flex justify-center gap-8 mt-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary">{experiences.length}</div>
-              <div className="text-sm text-muted-foreground">Positions</div>
-            </div>
-            <div className="w-px bg-border" />
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary">{totalYears}+</div>
-              <div className="text-sm text-muted-foreground">Years Experience</div>
-            </div>
-            <div className="w-px bg-border" />
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary">
-                {experiences.filter((e) => e.isCurrent).length}
-              </div>
-              <div className="text-sm text-muted-foreground">Current Roles</div>
-            </div>
-          </div>
         </RevealOnScroll>
 
         {/* Empty state */}
@@ -570,51 +526,29 @@ const ExperienceSectionContent = () => {
               <Briefcase className="w-12 h-12 text-primary" />
             </div>
             <h3 className="text-2xl font-bold mb-4">No experiences yet</h3>
-            <p className="text-muted-foreground mb-6">
-              Click below to add sample work experience data
-            </p>
-            <motion.button
-              onClick={handleSeed}
-              disabled={isSeeding}
-              className="px-8 py-4 rounded-xl bg-gradient-to-r from-red-500 to-rose-500 text-white font-semibold shadow-lg shadow-red-500/25 hover:shadow-red-500/40 transition-all disabled:opacity-50"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isSeeding ? "Adding Experiences..." : "Add Sample Experiences"}
-            </motion.button>
+            <p className="text-muted-foreground">Experience data will appear here.</p>
           </div>
         )}
 
         {/* Main content - Timeline */}
         {experiences.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left side - Timeline cards */}
-            <div className="relative">
-              {/* Timeline line */}
-              <div
-                ref={timelineRef}
-                className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent origin-top"
-              />
-
-              {/* Experience cards */}
-              <div className="space-y-6 pl-10">
-                {experiences.slice(0, 3).map((exp, index) => (
-                  <ExperienceCard
-                    key={index}
-                    experience={exp}
-                    index={index}
-                    isActive={activeExperience?.title === exp.title}
-                    onClick={() => setActiveExperience(exp)}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Right side - Details panel */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <AnimatePresence mode="wait">
-                <ExperienceDetails experience={activeExperience} />
-              </AnimatePresence>
+          <div className="relative">
+            {/* Timeline line */}
+            <div
+              ref={timelineRef}
+              className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent origin-top"
+            />
+            {/* Experience cards */}
+            <div className="space-y-6 pl-10">
+              {experiences.map((exp, index) => (
+                <ExperienceCard
+                  key={index}
+                  experience={exp}
+                  index={index}
+                  isActive={false}
+                  onClick={() => {}}
+                />
+              ))}
             </div>
           </div>
         )}

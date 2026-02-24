@@ -39,9 +39,13 @@ export const SkillsSection = () => {
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover flex items-center gap-4"
+              className="bg-muted/60 p-6 rounded-lg shadow-xs card-hover flex items-center gap-4"
             >
-              <img src={skill.img} alt={skill.name + ' icon'} className="h-8 w-8 flex-shrink-0" />
+              <img
+                src={skill.img}
+                alt={skill.name + ' icon'}
+                className={cn("h-8 w-8 flex-shrink-0", skill.darkInvert && "dark:invert")}
+              />
               <span className="font-semibold text-lg">{skill.name}</span>
             </div>
           ))}

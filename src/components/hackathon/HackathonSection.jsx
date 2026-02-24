@@ -4,8 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight, Trophy, Sparkles, Zap } from "lucide-react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HackathonCarousel } from "./HackathonCarousel";
 import { ProjectSpotlight } from "./ProjectSpotlight";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * HackathonSection Component - EPIC EDITION
@@ -44,10 +47,9 @@ export const HackathonSection = () => {
     }
   }, [hackathons]);
 
-  // GSAP Animations
+  // GSAP Particles Animation (no ScrollTrigger — just ambient particles)
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Create floating particles
       if (particlesRef.current) {
         for (let i = 0; i < 30; i++) {
           const particle = document.createElement("div");
@@ -65,7 +67,6 @@ export const HackathonSection = () => {
           `;
           particlesRef.current.appendChild(particle);
 
-          // Animate each particle
           gsap.to(particle, {
             x: `random(-100, 100)`,
             y: `random(-100, 100)`,
@@ -78,58 +79,6 @@ export const HackathonSection = () => {
           });
         }
       }
-
-      // Header animation timeline
-      const headerTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      headerTl
-        .from(headerRef.current, {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        })
-        .from(".hackathon-subtitle", {
-          y: 20,
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        }, "-=0.3");
-
-      // Spotlight entrance
-      gsap.from(spotlightRef.current, {
-        y: 60,
-        opacity: 0,
-        scale: 0.95,
-        duration: 1,
-        delay: 0.3,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: spotlightRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Carousel entrance
-      gsap.from(carouselRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: carouselRef.current,
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -201,7 +150,7 @@ export const HackathonSection = () => {
     <section 
       ref={sectionRef}
       id="hackathons" 
-      className="py-24 px-4 overflow-x-clip overflow-y-visible relative bg-background"
+      className="py-10 px-4 overflow-x-clip overflow-y-visible relative bg-background"
     >
       {/* Floating particles container */}
       <div 
@@ -215,20 +164,27 @@ export const HackathonSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header - EPIC Edition */}
-        <div ref={headerRef} className="text-center mb-16">
+        <motion.div
+          ref={headerRef}
+          className="text-center mb-4"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                       bg-red-500/10 border border-red-500/20 mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full 
+                       bg-red-500/10 border border-red-500/20 mb-3"
           >
-            <Trophy className="w-4 h-4 text-red-500" />
-            <span className="text-sm font-medium text-red-500">Competition Projects</span>
+            <Trophy className="w-3 h-3 text-red-500" />
+            <span className="text-xs font-medium text-red-500">Competition Projects</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-black mb-4">
+          <h2 className="text-2xl md:text-4xl font-black mb-2">
             Hackathon{" "}
             <span 
               className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-red-600"
@@ -240,27 +196,47 @@ export const HackathonSection = () => {
             </span>
           </h2>
 
-          <p className="hackathon-subtitle text-muted-foreground text-lg max-w-2xl mx-auto">
+          <motion.p
+            className="hackathon-subtitle text-muted-foreground text-sm max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+          >
             Battle-tested projects built under pressure. Each one tells a story of innovation,
             teamwork, and pushing the limits of what's possible in 24-48 hours.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Spotlight (Detail View) */}
-        <div ref={spotlightRef} className="mb-10">
+        <motion.div
+          ref={spotlightRef}
+          className="mb-3 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 60, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        >
           <AnimatePresence mode="wait">
             <ProjectSpotlight key={activeProject?._id} project={activeProject} />
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {/* Carousel (Navigation) */}
-        <div ref={carouselRef} className="overflow-visible">
+        <motion.div
+          ref={carouselRef}
+          className="overflow-visible max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+        >
           <HackathonCarousel
             hackathons={hackathons}
             activeId={activeProject?._id}
             onSelect={handleSelect}
           />
-        </div>
+        </motion.div>
 
         {/* See All Button - Epic Edition */}
         <motion.div
@@ -268,11 +244,11 @@ export const HackathonSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12"
+          className="text-center mt-5"
         >
           <Link
             to="/hackathons"
-            className="group inline-flex items-center gap-3 px-6 py-3 rounded-full
+            className="group inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm
                        bg-gradient-to-r from-red-500/10 to-transparent
                        border border-red-500/30 hover:border-red-500/60
                        text-red-500 font-medium

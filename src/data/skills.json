@@ -27,7 +27,7 @@
   {
     "name": "CSS3",
     "category": "frontend",
-    "img": "https://cdn.simpleicons.org/css3/1572B6"
+    "img": "https://cdn.simpleicons.org/css/1572B6"
   },
   {
     "name": "Tailwind CSS",
@@ -47,7 +47,7 @@
   {
     "name": "Java",
     "category": "backend",
-    "img": "https://cdn.simpleicons.org/oracle/F80000"
+    "img": "https://cdn.simpleicons.org/openjdk/ED8B00"
   },
   {
     "name": "PHP",
@@ -57,17 +57,20 @@
   {
     "name": "Express",
     "category": "backend",
-    "img": "https://cdn.simpleicons.org/express/000000"
+    "img": "https://cdn.simpleicons.org/express/000000",
+    "darkInvert": true
   },
   {
     "name": "Flask",
     "category": "backend",
-    "img": "https://cdn.simpleicons.org/flask/000000"
+    "img": "https://cdn.simpleicons.org/flask/000000",
+    "darkInvert": true
   },
   {
     "name": "Next.js",
     "category": "frameworks",
-    "img": "https://cdn.simpleicons.org/nextdotjs/000000"
+    "img": "https://cdn.simpleicons.org/nextdotjs/000000",
+    "darkInvert": true
   },
   {
     "name": "NestJS",
@@ -97,7 +100,8 @@
   {
     "name": "GitHub",
     "category": "tools",
-    "img": "https://cdn.simpleicons.org/github/181717"
+    "img": "https://cdn.simpleicons.org/github/181717",
+    "darkInvert": true
   },
   {
     "name": "Docker",
@@ -147,6 +151,6 @@
   {
     "name": "Convex",
     "category": "backend",
-    "img": "https://cdn.simpleicons.org/databricks/FF3621"
+    "img": "https://cdn.simpleicons.org/convex/EE342F"
   }
 ]

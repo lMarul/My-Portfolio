@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import { FolderGit2, Sparkles, Code2, Zap, ChevronRight } from "lucide-react";
 import { ProjectCarousel } from "./projects/ProjectCarousel";
 import { ProjectShowcase } from "./projects/ProjectShowcase";
 import projectsData from "@/data/projects.json";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const ProjectsSection = () => {
   const projects = projectsData || [];
@@ -86,7 +89,7 @@ export const ProjectsSection = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       });
 
@@ -101,7 +104,7 @@ export const ProjectsSection = () => {
         scrollTrigger: {
           trigger: showcaseRef.current,
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       });
 
@@ -115,7 +118,7 @@ export const ProjectsSection = () => {
         scrollTrigger: {
           trigger: carouselRef.current,
           start: "top 90%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       });
     }, sectionRef);
@@ -149,7 +152,7 @@ export const ProjectsSection = () => {
     <section
       ref={sectionRef}
       id="projects"
-      className="py-28 px-4 relative overflow-x-clip overflow-y-visible bg-background"
+      className="py-10 px-4 relative overflow-x-clip overflow-y-visible bg-background"
     >
       {/* Floating particles */}
       <div
@@ -175,16 +178,16 @@ export const ProjectsSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <span className="text-sm uppercase tracking-[0.3em] text-primary font-medium">
+        <div ref={headerRef} className="text-center mb-4">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium">
               Featured Work
             </span>
-            <Sparkles className="w-5 h-5 text-primary" />
+            <Sparkles className="w-4 h-4 text-primary" />
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-black mb-4 font-cinzel">
+          <h2 className="text-2xl md:text-4xl font-black mb-2 font-cinzel">
             Featured{" "}
             <span
               className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-red-600"
@@ -196,7 +199,7 @@ export const ProjectsSection = () => {
             </span>
           </h2>
 
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
             Explore my portfolio of projects showcasing modern web development,
             creative solutions, and technical expertise that push boundaries.
           </p>
@@ -205,14 +208,14 @@ export const ProjectsSection = () => {
         {/* Main Showcase */}
         {projects.length > 0 && (
           <>
-            <div ref={showcaseRef} className="mb-10">
+            <div ref={showcaseRef} className="mb-3 max-w-4xl mx-auto">
               <AnimatePresence mode="wait">
                 <ProjectShowcase key={activeProject?._id} project={activeProject} />
               </AnimatePresence>
             </div>
 
             {/* Carousel */}
-            <div ref={carouselRef} className="overflow-visible">
+            <div ref={carouselRef} className="overflow-visible max-w-4xl mx-auto">
               <ProjectCarousel
                 projects={projects.slice(0, 5)}
                 activeId={activeProject?._id}
@@ -226,11 +229,11 @@ export const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-center mt-12"
+              className="text-center mt-5"
             >
               <Link
                 to="/projects"
-                className="group inline-flex items-center gap-3 px-6 py-3 rounded-full
+                className="group inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm
                            bg-gradient-to-r from-red-500/10 to-transparent
                            border border-red-500/30 hover:border-red-500/60
                            text-red-500 font-medium

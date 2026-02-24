@@ -104,7 +104,7 @@ export const ProjectCarousel = ({
       )}
 
       <div
-        className="flex gap-3 px-2 py-4 pr-8 overflow-visible"
+        className="flex gap-2 px-1 py-2 pr-6 overflow-visible"
       >
         {visibleProjects.map((project, index) => {
           const expanded = isExpanded(project._id);
@@ -127,7 +127,7 @@ export const ProjectCarousel = ({
               }}
               style={{
                 flex: expanded ? "3 0 0%" : "1 0 0%",
-                minWidth: expanded ? "420px" : "180px",
+                minWidth: expanded ? "300px" : "120px",
                 transition: "all 0.4s ease-in-out",
               }}
             >

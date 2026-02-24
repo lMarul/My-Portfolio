@@ -258,8 +258,7 @@ export const EpicContactSection = () => {
                         }}
                       >
                         <social.icon
-                          className="w-6 h-6 transition-colors duration-300"
-                          style={{ color: social.color }}
+                          className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors duration-300"
                         />
                       </div>
 
@@ -286,7 +285,7 @@ export const EpicContactSection = () => {
                 </p>
 
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-muted-foreground">
+                  <div className="flex items-center justify-center gap-3 text-muted-foreground">
                     <Mail className="w-5 h-5 text-primary" />
                     <span>marwinjohngonzales@gmail.com</span>
                   </div>

@@ -142,8 +142,8 @@ export const ProjectSpotlight = ({ project, className }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
         {/* Bottom Content Area - Strict Left/Right Split - TOP ALIGNED */}
-        <div className="absolute bottom-0 w-full p-8 lg:p-10 pr-32">
-          <div className="flex gap-12 items-start">
+        <div className="absolute bottom-0 w-full p-5 lg:p-6 pr-24">
+          <div className="flex gap-8 items-start">
             {/* LEFT SECTION: Title, Organizer, Date - LEFT ALIGNED */}
             <div className="flex-shrink-0 w-[40%]">
               {/* Organizer Badge */}
@@ -164,7 +164,7 @@ export const ProjectSpotlight = ({ project, className }) => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 }}
-                className="text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight drop-shadow-lg text-left"
+                className="text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight drop-shadow-lg text-left"
               >
                 {project.title}
               </motion.h2>
@@ -194,7 +194,7 @@ export const ProjectSpotlight = ({ project, className }) => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-white/90 leading-relaxed mb-4 drop-shadow-md line-clamp-3 text-right max-w-2xl"
+                className="text-white/90 leading-relaxed mb-3 drop-shadow-md line-clamp-2 text-right max-w-2xl text-sm"
               >
                 {project.description}
               </motion.p>
@@ -204,7 +204,7 @@ export const ProjectSpotlight = ({ project, className }) => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-wrap gap-2 mb-4 justify-end"
+                className="flex flex-wrap gap-1.5 mb-3 justify-end"
               >
                 {project.tags.map((tag) => (
                   <span
@@ -266,7 +266,7 @@ export const ProjectSpotlight = ({ project, className }) => {
         </div>
 
         {/* Alarm Clock Gallery - TOP-RIGHT CORNER (Infinite Vertical Carousel) */}
-        <div className="absolute top-6 right-6 flex flex-col gap-2">
+        <div className="absolute top-4 right-4 flex flex-col gap-1.5">
           {visibleGalleryImages.map((item, idx) => {
             const isCenter = item.position === 2;
             const isActive = activeImage === item.image;
@@ -276,7 +276,7 @@ export const ProjectSpotlight = ({ project, className }) => {
                 key={`${item.originalIndex}-${item.position}`}
                 onClick={() => handleGalleryClick(item.position)}
                 className={cn(
-                  "relative w-20 h-14 rounded-lg overflow-hidden",
+                  "relative w-14 h-10 rounded-lg overflow-hidden",
                   "border-2 transition-all duration-300 drop-shadow-lg",
                   "hover:scale-105 cursor-pointer",
                   isActive

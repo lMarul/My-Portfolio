@@ -37,6 +37,55 @@ export const UltimateThemeToggle = () => {
     const newIsDark = !isDark;
     setIsDark(newIsDark);
 
+    // --- Full-page circular reveal transition ---
+    const rect = toggleRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    // Diagonal of viewport = max radius needed
+    const maxRadius = Math.hypot(
+      Math.max(cx, window.innerWidth - cx),
+      Math.max(cy, window.innerHeight - cy)
+    );
+
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
+      position: fixed; inset: 0; z-index: 99999; pointer-events: none;
+      background: ${newIsDark ? "hsl(0 0% 4%)" : "hsl(0 0% 98%)"};
+      clip-path: circle(0px at ${cx}px ${cy}px);
+      will-change: clip-path, opacity;
+    `;
+    document.body.appendChild(overlay);
+
+    // Animate clip-path circle expansion, then fade overlay out
+    const revealTl = gsap.timeline({
+      onComplete: () => overlay.remove(),
+    });
+
+    revealTl
+      .to(overlay, {
+        clipPath: `circle(${maxRadius}px at ${cx}px ${cy}px)`,
+        duration: 0.85,
+        ease: "power3.inOut",
+        onUpdate: function () {
+          // Switch theme class partway through so content updates behind overlay
+          if (this.progress() > 0.25 && !overlay.dataset.switched) {
+            overlay.dataset.switched = "1";
+            if (newIsDark) {
+              document.documentElement.classList.add("dark");
+              localStorage.setItem("theme", "dark");
+            } else {
+              document.documentElement.classList.remove("dark");
+              localStorage.setItem("theme", "light");
+            }
+          }
+        },
+      })
+      .to(overlay, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      }, "-=0.25");
+
     // Create epic transition animation
     const tl = gsap.timeline({
       onComplete: () => setIsAnimating(false),
@@ -44,8 +93,6 @@ export const UltimateThemeToggle = () => {
 
     if (newIsDark) {
       // Transitioning to DARK mode (night)
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
 
       // Sun goes down
       tl.to(sunRef.current, {
@@ -75,8 +122,6 @@ export const UltimateThemeToggle = () => {
 
     } else {
       // Transitioning to LIGHT mode (day)
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
 
       // Stars disappear
       tl.to(starsRef.current.children, {
