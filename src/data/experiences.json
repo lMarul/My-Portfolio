@@ -1,0 +1,253 @@
+[
+  {
+    "title": "Vice President Internal",
+    "organization": "Junior Information Systems Security Association - Asia Pacific College",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2025-01",
+    "endDate": null,
+    "isCurrent": true,
+    "description": "As the Vice President Internal for the Junior Information Systems Security Association - Asia Pacific College (JISSA-APC), I provide strategic Leadership to oversee the organization's internal operations and foster a cohesive community of cybersecurity enthusiasts. My role focuses on comprehensive Event Planning for key initiatives, including General Assemblies, team-building sessions, and skill-development workshops, ensuring alignment with our mission. I also drive effective Event Management by coordinating logistics and streamlining communication across departments, ensuring that all internal activities run seamlessly to maximize member engagement and organizational growth.",
+    "responsibilities": [
+      "Provide strategic leadership to oversee internal operations of JISSA-APC",
+      "Plan and organize General Assemblies, team-building sessions, and skill-development workshops",
+      "Coordinate logistics and streamline communication across departments",
+      "Foster a cohesive community of cybersecurity enthusiasts",
+      "Ensure alignment of all internal activities with organizational mission"
+    ],
+    "achievements": [
+      "Successfully managed multiple large-scale internal events",
+      "Enhanced member engagement through improved event coordination",
+      "Strengthened interdepartmental communication and collaboration"
+    ],
+    "logo": "https://cdn.simpleicons.org/security",
+    "color": "#FF6B6B",
+    "technologies": ["Leadership", "Event Management", "Event Planning"]
+  },
+  {
+    "title": "Prime Minister",
+    "organization": "APC SPEAKS",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2025-01",
+    "endDate": null,
+    "isCurrent": true,
+    "description": "The Prime Minister serves as the chief executive and highest-ranking officer of APC–SPEAKS. As the head of the organization, the Prime Minister provides overall leadership, ensures the achievement of the organization's mission, and represents APC–SPEAKS within the school community and beyond. This role upholds the values of public speaking, debate, and student leadership while guiding the organization's members toward growth and excellence.",
+    "responsibilities": [
+      "Serve as chief executive and highest-ranking officer of APC-SPEAKS",
+      "Provide overall leadership and strategic direction for the organization",
+      "Represent APC-SPEAKS within the school community and external events",
+      "Uphold values of public speaking, debate, and student leadership",
+      "Guide members toward personal and professional growth"
+    ],
+    "achievements": [
+      "Led organization as chief executive officer",
+      "Successfully represented APC-SPEAKS in various institutional events",
+      "Fostered culture of excellence in public speaking and debate"
+    ],
+    "logo": "https://cdn.simpleicons.org/googlemeet",
+    "color": "#00897B",
+    "technologies": ["Public Speaking", "Leadership"]
+  },
+  {
+    "title": "Assistant Developer Lead",
+    "organization": "Junior Philippine Computer Society - Asia Pacific College",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2025-01",
+    "endDate": null,
+    "isCurrent": true,
+    "description": "As the Assistant Developer Lead for the Junior Philippine Computer Society - Asia Pacific College, I co-manage the technical team's operations, ensuring the successful deployment of organization-wide software initiatives. My responsibilities focus on strategic Project Planning to optimize development timelines and resource allocation, alongside rigorous Quality Assurance testing to guarantee system reliability and performance.",
+    "responsibilities": [
+      "Co-manage technical team operations for JPCS-APC",
+      "Ensure successful deployment of organization-wide software initiatives",
+      "Conduct strategic project planning and optimize development timelines",
+      "Perform quality assurance testing to guarantee system reliability",
+      "Manage resource allocation for development projects"
+    ],
+    "achievements": [
+      "Successfully deployed multiple organization-wide software systems",
+      "Improved development efficiency through strategic planning",
+      "Maintained high quality standards across all projects"
+    ],
+    "logo": "https://cdn.simpleicons.org/python",
+    "color": "#3776AB",
+    "technologies": ["Quality Assurance", "Project Planning", "Software Documentation"]
+  },
+  {
+    "title": "Executive Logistics Officer",
+    "organization": "APC SOAR",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2025-01",
+    "endDate": null,
+    "isCurrent": true,
+    "description": "The Executive Logistics Officer ensures the smooth and efficient management of all logistical requirements for SOAR activities, projects, and events. This role is vital in supporting the organization's operations by handling resources, venues, materials, and on-ground coordination.",
+    "responsibilities": [
+      "Manage all logistical requirements for SOAR activities and events",
+      "Coordinate resources, venues, and materials for organizational projects",
+      "Oversee on-ground coordination during events",
+      "Ensure smooth execution of all SOAR operations",
+      "Support organization-wide initiatives through efficient logistics management"
+    ],
+    "achievements": [
+      "Streamlined logistics processes for multiple major events",
+      "Successfully coordinated resources across various activities",
+      "Enhanced operational efficiency through improved logistics management"
+    ],
+    "logo": "https://cdn.simpleicons.org/trello",
+    "color": "#0079BF",
+    "technologies": ["Logistics Management"]
+  },
+  {
+    "title": "Logistics Head",
+    "organization": "Microsoft Community - Asia Pacific College",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2025-01",
+    "endDate": null,
+    "isCurrent": true,
+    "description": "The Logistics Head ensures the smooth and efficient management of all logistical requirements for APC-MSC activities, projects, and events. This role is vital in supporting the organization's operations by handling resources, venues, materials, and on-ground coordination.",
+    "responsibilities": [
+      "Lead logistics operations for Microsoft Community activities",
+      "Manage resources, venues, and materials for events",
+      "Coordinate on-ground logistics during community events",
+      "Ensure efficient execution of all organizational activities",
+      "Oversee logistics team and delegate responsibilities"
+    ],
+    "achievements": [
+      "Successfully managed logistics for all Microsoft Community events",
+      "Optimized resource allocation and venue coordination",
+      "Led logistics team to deliver seamless event execution"
+    ],
+    "logo": "https://cdn.simpleicons.org/microsoft",
+    "color": "#5E5E5E",
+    "technologies": ["Logistics Management"]
+  },
+  {
+    "title": "Logistics Officer",
+    "organization": "APC Gaming Genesis",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2025-01",
+    "endDate": null,
+    "isCurrent": true,
+    "description": "As a Logistics Officer for APC Gaming Genesis, I provide essential logistical support to ensure the seamless execution of gaming tournaments and community events. My responsibilities include coordinating venue setups, managing equipment inventory, and overseeing resource allocation to maintain operational efficiency during high-paced activities.",
+    "responsibilities": [
+      "Provide logistical support for gaming tournaments and esports events",
+      "Coordinate venue setups and technical equipment arrangements",
+      "Manage equipment inventory and maintain resource availability",
+      "Oversee resource allocation during high-paced gaming activities",
+      "Ensure operational efficiency for all gaming community events"
+    ],
+    "achievements": [
+      "Successfully supported multiple gaming tournaments",
+      "Maintained smooth operations during high-intensity esports events",
+      "Optimized equipment management and venue coordination"
+    ],
+    "logo": "https://cdn.simpleicons.org/steam",
+    "color": "#00ADEE",
+    "technologies": ["Logistic Support"]
+  },
+  {
+    "title": "Operations Associate",
+    "organization": "Junior Information Systems Security Association - Asia Pacific College",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2024-01",
+    "endDate": "2025-01",
+    "isCurrent": false,
+    "description": "The Operations Associate ensures the effective coordination of both logistical and event-related tasks for JISSA - APC Chapter's activities. Serving as a bridge between the Logistics and Events Committees, this role involves preparing resources, supporting program execution, and ensuring that all operations run smoothly from planning to post-event wrap-up.",
+    "responsibilities": [
+      "Coordinated logistical and event-related tasks for JISSA activities",
+      "Served as liaison between Logistics and Events Committees",
+      "Prepared resources and supported program execution",
+      "Ensured smooth operations from planning to post-event phases",
+      "Managed both operational and event management responsibilities"
+    ],
+    "achievements": [
+      "Successfully bridged logistics and events operations",
+      "Contributed to seamless execution of JISSA events",
+      "Enhanced coordination between multiple committees"
+    ],
+    "logo": "https://cdn.simpleicons.org/security",
+    "color": "#FF6B6B",
+    "technologies": ["Operations Administration", "Event Management", "Logistic Support", "Logistics Management"]
+  },
+  {
+    "title": "Logistics Associate",
+    "organization": "Microsoft Community - Asia Pacific College",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2024-01",
+    "endDate": "2025-01",
+    "isCurrent": false,
+    "description": "The Logistics Officer supports the Executive Committee by handling logistical requirements for APC-MSC's projects, meetings, and events. The officer ensures that all materials, venues, and resources are prepared and available to guarantee the smooth execution of activities.",
+    "responsibilities": [
+      "Supported Executive Committee with logistical requirements",
+      "Handled logistics for projects, meetings, and community events",
+      "Ensured materials, venues, and resources were properly prepared",
+      "Coordinated logistics to guarantee smooth activity execution",
+      "Assisted in planning and implementing logistics strategies"
+    ],
+    "achievements": [
+      "Provided reliable logistics support for all MSC activities",
+      "Contributed to successful execution of community events",
+      "Built strong foundation in logistics management"
+    ],
+    "logo": "https://cdn.simpleicons.org/microsoft",
+    "color": "#5E5E5E",
+    "technologies": ["Logistic Support", "Logistics Management"]
+  },
+  {
+    "title": "Member",
+    "organization": "Junior Philippine Computer Society - Asia Pacific College",
+    "type": "student-org",
+    "location": "Makati, National Capital Region, Philippines",
+    "startDate": "2024-01",
+    "endDate": "2025-01",
+    "isCurrent": false,
+    "description": "As a member of JPCS, I commit to actively participating in the organization's activities that promote growth in the field of information technology and computer science. I represent the organization in both internal and external events while developing my skills, knowledge, and network.",
+    "responsibilities": [
+      "Actively participated in JPCS activities and initiatives",
+      "Represented organization in internal and external events",
+      "Engaged in workshops and training sessions",
+      "Contributed to IT and computer science community building",
+      "Collaborated with fellow members on various projects"
+    ],
+    "achievements": [
+      "Successfully participated in multiple organizational events",
+      "Built strong foundation in IT and computer science",
+      "Developed professional network within tech community"
+    ],
+    "logo": "https://cdn.simpleicons.org/python",
+    "color": "#3776AB",
+    "technologies": ["Team Building"]
+  },
+  {
+    "title": "Work Immersion Student",
+    "organization": "Taguig City Health Office, Sanitation Office",
+    "type": "ojt",
+    "location": "Taguig City, Philippines",
+    "startDate": "2024-01",
+    "endDate": "2024-06",
+    "isCurrent": false,
+    "description": "Completed work immersion program focused on health administration and digital systems. Gained hands-on experience in a professional government office environment, producing health identification documents and certificates while managing database operations. This immersion provided invaluable exposure to real-world work culture, professional communication standards, and collaboration with experienced healthcare administrators and civil service professionals.",
+    "responsibilities": [
+      "Produced health identification cards and medical certificates for constituents",
+      "Encoded citizen information and health records into government databases",
+      "Maintained data accuracy and confidentiality in health information systems",
+      "Collaborated with healthcare professionals and administrative staff",
+      "Learned government office protocols and professional workplace standards"
+    ],
+    "achievements": [
+      "Successfully processed hundreds of health IDs and certificates",
+      "Gained practical experience in database management and data entry",
+      "Developed professional communication skills in government setting",
+      "Adapted quickly to workplace culture and professional environment"
+    ],
+    "logo": "https://cdn.simpleicons.org/healthcare",
+    "color": "#DC143C",
+    "technologies": ["Database Management", "Data Entry", "Health Information Systems"]
+  }
+]

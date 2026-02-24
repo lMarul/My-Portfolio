@@ -2,8 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Award, ExternalLink, Calendar, Cloud, Code, Smartphone, Shield, Database, Sparkles, ChevronRight } from "lucide-react";
 import { Anime3DCard, RevealOnScroll, MorphingShape } from "./AnimeComponents";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import certificationsData from "@/data/certifications.json";
 
 // Icon mapping helper
 const getIcon = (type) => {
@@ -19,19 +18,7 @@ const getIcon = (type) => {
 };
 
 export const CertificationsSection = () => {
-    const certifications = useQuery(api.certifications.get) || [];
-    const seedCertifications = useMutation(api.certifications.seed);
-    const [isSeeding, setIsSeeding] = useState(false);
-
-    const handleSeed = async () => {
-        setIsSeeding(true);
-        try {
-            await seedCertifications();
-        } catch (error) {
-            console.error("Failed to seed certifications:", error);
-        }
-        setIsSeeding(false);
-    };
+    const certifications = certificationsData || [];
 
     return (
         <section id="certifications" className="py-32 px-4 relative overflow-hidden bg-background">
@@ -75,44 +62,18 @@ export const CertificationsSection = () => {
                     </p>
                 </RevealOnScroll>
 
-                {/* Empty State / Seed Button */}
-                {certifications.length === 0 && (
-                    <div className="text-center mb-12">
-                        <button
-                            onClick={handleSeed}
-                            disabled={isSeeding}
-                            className="group px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-red-500 
-                                       text-white font-bold text-lg shadow-[0_0_30px_rgba(220,38,38,0.4)]
-                                       hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] hover:scale-105
-                                       transition-all duration-300 disabled:opacity-50"
-                        >
-                            {isSeeding ? (
-                                <span className="flex items-center gap-2">
-                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/20 border-t-white" />
-                                    Loading...
-                                </span>
-                            ) : (
-                                <span className="flex items-center gap-2">
-                                    <Sparkles className="w-5 h-5" />
-                                    Load Certifications
-                                </span>
-                            )}
-                        </button>
-                    </div>
-                )}
-
                 {/* Certifications Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     {certifications.slice(0, 4).map((cert, index) => {
                         const Icon = getIcon(cert.iconType);
                         return (
-                            <RevealOnScroll key={cert._id} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
+                            <RevealOnScroll key={index} delay={index * 150} direction={index % 2 === 0 ? "left" : "right"}>
                                 <Anime3DCard
                                     intensity={10}
                                     glowColor={cert.glowColor}
                                     className="h-full"
                                 >
-                                    <div className="relative h-full p-8 rounded-3xl bg-card/40 backdrop-blur-md border border-white/10 overflow-hidden group">
+                                    <div className="relative h-full p-8 rounded-3xl bg-white/90 dark:bg-card/40 backdrop-blur-md border border-black/5 dark:border-white/10 overflow-hidden group shadow-lg dark:shadow-none">
                                         {/* Gradient Background on Hover */}
                                         <div className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 

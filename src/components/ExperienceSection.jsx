@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import experiencesData from "@/data/experiences.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,9 +24,6 @@ import { cn } from "@/lib/utils";
 import { RevealOnScroll } from "./AnimeComponents";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Check if experiences API is available
-const hasExperiencesApi = api?.experiences?.get && api?.experiences?.seed;
 
 // Type icons mapping
 const typeIcons = {
@@ -256,7 +252,7 @@ const ExperienceDetails = ({ experience }) => {
 
   return (
     <motion.div
-      key={experience._id}
+      key={experience.title}
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -425,40 +421,12 @@ const ExperienceDetails = ({ experience }) => {
  * ExperienceSection - Epic Work Experience Timeline
  */
 export const ExperienceSection = () => {
-  // If the experiences API isn't available yet (Convex not regenerated), show placeholder
-  if (!hasExperiencesApi) {
-    return (
-      <section id="experience" className="py-32 px-4 relative overflow-hidden">
-        <div className="container mx-auto max-w-7xl relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <span className="text-sm uppercase tracking-[0.3em] text-primary font-medium">
-              Journey So Far
-            </span>
-            <Sparkles className="w-5 h-5 text-primary" />
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Work{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">
-              Experience
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Run <code className="px-2 py-1 bg-secondary rounded text-sm">npx convex dev</code> to load experiences
-          </p>
-        </div>
-      </section>
-    );
-  }
-
   return <ExperienceSectionContent />;
 };
 
 const ExperienceSectionContent = () => {
-  const experiences = useQuery(api.experiences.get) || [];
-  const seedExperiences = useMutation(api.experiences.seed);
+  const experiences = experiencesData || [];
   const [activeExperience, setActiveExperience] = useState(null);
-  const [isSeeding, setIsSeeding] = useState(false);
 
   const sectionRef = useRef(null);
   const timelineRef = useRef(null);
@@ -527,16 +495,7 @@ const ExperienceSectionContent = () => {
     return () => ctx.revert();
   }, [experiences.length]);
 
-  // Handle seeding
-  const handleSeed = async () => {
-    setIsSeeding(true);
-    try {
-      await seedExperiences();
-    } catch (error) {
-      console.error("Error seeding experiences:", error);
-    }
-    setIsSeeding(false);
-  };
+
 
   // Calculate total experience
   const totalYears = useMemo(() => {
@@ -554,7 +513,7 @@ const ExperienceSectionContent = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="py-32 px-4 relative overflow-hidden"
+      className="py-32 px-4 relative overflow-hidden bg-background"
     >
       {/* Floating particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
@@ -641,10 +600,10 @@ const ExperienceSectionContent = () => {
               <div className="space-y-6 pl-10">
                 {experiences.slice(0, 3).map((exp, index) => (
                   <ExperienceCard
-                    key={exp._id}
+                    key={index}
                     experience={exp}
                     index={index}
-                    isActive={activeExperience?._id === exp._id}
+                    isActive={activeExperience?.title === exp.title}
                     onClick={() => setActiveExperience(exp)}
                   />
                 ))}

@@ -104,7 +104,7 @@ export const ProjectCarousel = ({
       )}
 
       <div
-        className="flex gap-3 px-2 py-4 overflow-hidden"
+        className="flex gap-3 px-2 py-4 pr-8 overflow-visible"
       >
         {visibleProjects.map((project, index) => {
           const expanded = isExpanded(project._id);

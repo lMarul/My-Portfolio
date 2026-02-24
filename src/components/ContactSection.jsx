@@ -8,6 +8,7 @@ import {
   Twitch,
   Twitter,
   Facebook,
+  Github,
   ArrowUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -45,16 +46,19 @@ export const ContactSection = () => {
 
         <div className="flex flex-col items-center justify-center w-full mb-16">
           <div className="flex space-x-4 justify-center">
-            <a href="https://www.linkedin.com/in/marwin-john-gonzales-a38509322/" target="_blank" className="hover:text-primary transition-colors">
+            <a href="https://github.com/lMarul" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+              <Github />
+            </a>
+            <a href="https://www.linkedin.com/in/marwin-john-gonzales-a38509322/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
               <Linkedin />
             </a>
-            <a href="https://www.facebook.com/marwin.john.gonzales.2024/" target="_blank" className="hover:text-primary transition-colors">
+            <a href="https://www.facebook.com/marwin.john.gonzales.2024" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
               <Facebook />
             </a>
-            <a href="https://www.instagram.com/maruwinu/" target="_blank" className="hover:text-primary transition-colors">
+            <a href="https://instagram.com/maruwinu" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
               <Instagram />
             </a>
-            <a href="mailto:marwinjohngonzales@gmail.com" target="_blank" className="hover:text-primary transition-colors">
+            <a href="mailto:marwinjohngonzales@gmail.com" className="hover:text-primary transition-colors">
               <Mail />
             </a>
           </div>

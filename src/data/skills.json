@@ -1,0 +1,152 @@
+[
+  {
+    "name": "React",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/react/61DAFB"
+  },
+  {
+    "name": "Vue.js",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/vuedotjs/4FC08D"
+  },
+  {
+    "name": "TypeScript",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/typescript/3178C6"
+  },
+  {
+    "name": "JavaScript",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/javascript/F7DF1E"
+  },
+  {
+    "name": "HTML5",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/html5/E34F26"
+  },
+  {
+    "name": "CSS3",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/css3/1572B6"
+  },
+  {
+    "name": "Tailwind CSS",
+    "category": "frontend",
+    "img": "https://cdn.simpleicons.org/tailwindcss/06B6D4"
+  },
+  {
+    "name": "Node.js",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/nodedotjs/339933"
+  },
+  {
+    "name": "Python",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/python/3776AB"
+  },
+  {
+    "name": "Java",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/oracle/F80000"
+  },
+  {
+    "name": "PHP",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/php/777BB4"
+  },
+  {
+    "name": "Express",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/express/000000"
+  },
+  {
+    "name": "Flask",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/flask/000000"
+  },
+  {
+    "name": "Next.js",
+    "category": "frameworks",
+    "img": "https://cdn.simpleicons.org/nextdotjs/000000"
+  },
+  {
+    "name": "NestJS",
+    "category": "frameworks",
+    "img": "https://cdn.simpleicons.org/nestjs/E0234E"
+  },
+  {
+    "name": "Laravel",
+    "category": "frameworks",
+    "img": "https://cdn.simpleicons.org/laravel/FF2D20"
+  },
+  {
+    "name": "Flutter",
+    "category": "frameworks",
+    "img": "https://cdn.simpleicons.org/flutter/02569B"
+  },
+  {
+    "name": "React Native",
+    "category": "frameworks",
+    "img": "https://cdn.simpleicons.org/react/61DAFB"
+  },
+  {
+    "name": "Git",
+    "category": "tools",
+    "img": "https://cdn.simpleicons.org/git/F05032"
+  },
+  {
+    "name": "GitHub",
+    "category": "tools",
+    "img": "https://cdn.simpleicons.org/github/181717"
+  },
+  {
+    "name": "Docker",
+    "category": "tools",
+    "img": "https://cdn.simpleicons.org/docker/2496ED"
+  },
+  {
+    "name": "Vite",
+    "category": "tools",
+    "img": "https://cdn.simpleicons.org/vite/646CFF"
+  },
+  {
+    "name": "VS Code",
+    "category": "tools",
+    "img": "https://cdn.simpleicons.org/visualstudiocode/007ACC"
+  },
+  {
+    "name": "Figma",
+    "category": "tools",
+    "img": "https://cdn.simpleicons.org/figma/F24E1E"
+  },
+  {
+    "name": "MySQL",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/mysql/4479A1"
+  },
+  {
+    "name": "MongoDB",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/mongodb/47A248"
+  },
+  {
+    "name": "PostgreSQL",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/postgresql/4169E1"
+  },
+  {
+    "name": "Firebase",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/firebase/FFCA28"
+  },
+  {
+    "name": "Supabase",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/supabase/3FCF8E"
+  },
+  {
+    "name": "Convex",
+    "category": "backend",
+    "img": "https://cdn.simpleicons.org/databricks/FF3621"
+  }
+]

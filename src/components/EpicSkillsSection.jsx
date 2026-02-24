@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import anime from "animejs";
 import { cn } from "@/lib/utils";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import skillsData from "@/data/skills.json";
 import { Anime3DCard, RevealOnScroll } from "./AnimeComponents";
 import { Sparkles, Cpu, Layers, Wrench, Code2 } from "lucide-react";
 
@@ -19,7 +18,7 @@ const categories = [
  */
 export const EpicSkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const skills = useQuery(api.skills.get) ?? [];
+  const skills = skillsData ?? [];
   const containerRef = useRef(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -282,7 +281,7 @@ export const EpicSkillsSection = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
           50% { transform: translateY(-10px) scale(1.2); opacity: 1; }

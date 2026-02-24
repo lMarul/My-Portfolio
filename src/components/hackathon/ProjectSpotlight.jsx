@@ -126,12 +126,15 @@ export const ProjectSpotlight = ({ project, className }) => {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
               className="absolute inset-0"
-              style={{
-                backgroundImage: `url(${activeImage || project.thumbnail})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            />
+            >
+              <img
+                src={activeImage || project.thumbnail}
+                alt={project.title}
+                className="w-full h-full object-cover"
+                onLoad={() => console.log("Hackathon image loaded:", activeImage || project.thumbnail)}
+                onError={(e) => console.error("Hackathon image failed:", activeImage || project.thumbnail, e)}
+              />
+            </motion.div>
           )}
         </AnimatePresence>
 

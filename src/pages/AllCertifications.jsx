@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import certificationsData from "@/data/certifications.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -34,7 +33,7 @@ const getIcon = (type) => {
  * AllCertifications Page
  */
 export const AllCertifications = () => {
-    const certifications = useQuery(api.certifications.get) || [];
+    const certifications = certificationsData || [];
     const [searchQuery, setSearchQuery] = useState("");
 
     const filteredCerts = useMemo(() => {

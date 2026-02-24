@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import projectsData from "@/data/projects.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -19,7 +18,7 @@ import {
  * Full archive of all projects
  */
 export const AllProjects = () => {
-    const projects = useQuery(api.projects.get) || [];
+    const projects = projectsData || [];
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedTags, setSelectedTags] = useState([]);
 

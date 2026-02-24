@@ -1,0 +1,69 @@
+{
+  "hero": {
+    "title": "Marwin John Gonzales",
+    "subtitle": "Full Stack Developer & Tech Enthusiast",
+    "description": "Building exceptional digital experiences with modern technologies. Passionate about creating innovative solutions that make a difference.",
+    "roles": [
+      "Full Stack Developer",
+      "Web Developer",
+      "Mobile Developer"
+    ]
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Your friendly neighborhood developer",
+    "bio": [
+      "I'm a passionate full-stack developer currently studying at Asia Pacific College. I love building things that live on the internet, whether that's websites, applications, or anywhere in between.",
+      "My journey in tech started with curiosity and has evolved into a passion for creating innovative solutions. I'm always eager to learn new technologies and tackle challenging problems.",
+      "When I'm not coding, you can find me exploring new tech trends, participating in hackathons, or contributing to open-source projects."
+    ],
+    "profilePic": "",
+    "stats": {
+      "projects": "10+",
+      "technologies": "30+",
+      "curiosity": "∞"
+    }
+  },
+  "socialLinks": [
+    {
+      "platform": "github",
+      "url": "https://github.com/lMarul",
+      "label": "GitHub",
+      "color": "#181717",
+      "order": 1,
+      "isActive": true
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/marwin-john-gonzales-a38509322/",
+      "label": "LinkedIn",
+      "color": "#0A66C2",
+      "order": 2,
+      "isActive": true
+    },
+    {
+      "platform": "email",
+      "url": "mailto:marwinjohngonzales@gmail.com",
+      "label": "Email",
+      "color": "#EA4335",
+      "order": 3,
+      "isActive": true
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/marwin.john.gonzales.2024",
+      "label": "Facebook",
+      "color": "#1877F2",
+      "order": 4,
+      "isActive": true
+    },
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com/maruwinu",
+      "label": "Instagram",
+      "color": "#E4405F",
+      "order": 5,
+      "isActive": true
+    }
+  ]
+}

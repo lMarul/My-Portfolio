@@ -11,8 +11,7 @@ import {
   Github,
   MessageCircle,
 } from "lucide-react";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import siteContentData from "@/data/siteContent.json";
 import { RevealOnScroll, MorphingShape, Anime3DCard } from "./AnimeComponents";
 import { useToast } from "@/hooks/use-toast";
 
@@ -25,8 +24,8 @@ export const EpicContactSection = () => {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
 
-  // Fetch social links from Convex
-  const socialLinksData = useQuery(api.siteContent.getSocialLinks);
+  // Use social links from JSON
+  const socialLinksData = siteContentData.socialLinks;
 
   // Icon mapping
   const iconMap = {

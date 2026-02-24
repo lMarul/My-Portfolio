@@ -81,25 +81,26 @@ export const Navbar = () => {
     <nav
       ref={navRef}
       className={cn(
-        "fixed w-full z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        // Glossy glass morphism effect - always visible when scrolling
         isScrolled
-          ? "py-3 bg-background/70 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-border/50"
-          : "py-5 bg-transparent"
+          ? "py-2 bg-background/80 backdrop-blur-xl border-b border-border/30 shadow-lg shadow-black/20"
+          : "py-3 bg-background/70 border-b border-border/50 backdrop-blur-md md:backdrop-blur-xl shadow-lg shadow-black/10"
       )}
     >
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <a
-          className="nav-logo text-xl font-bold flex items-center gap-2 group"
+          className="nav-logo text-lg sm:text-xl font-bold flex items-center gap-2 group"
           href="#hero"
         >
-          <div className="relative">
-            <Sparkles className="w-6 h-6 text-primary absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transform: "scale(0.6)" }} />
-            <span className="text-foreground">Marwin's</span>
+          <div className="relative flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-red-500 absolute -top-1 -left-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transform: "scale(0.6)" }} />
+            <span className="text-foreground">Marwin John</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400 font-black">
+              Gonzales
+            </span>
           </div>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400 font-black">
-            Portfolio
-          </span>
         </a>
 
         {/* Desktop Navigation */}
@@ -151,7 +152,7 @@ export const Navbar = () => {
                 duration: 300,
               });
             }}
-            className="p-2 text-foreground z-50 relative"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-background/70 text-foreground shadow-lg shadow-black/30 backdrop-blur-md active:scale-95 transition-all duration-200"
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             <div className="menu-icon">

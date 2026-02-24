@@ -1,0 +1,154 @@
+/* Hero Section Enhancements */
+
+/* Profile image smooth transition and animation */
+#hero img {
+  animation: fadeInScale 0.8s ease-out forwards;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
+  will-change: opacity;
+}
+
+/* Smooth image fade transition */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Profile image hover effect */
+#hero img:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom underline animation */
+.hero-name span::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  transition: width 0.3s ease;
+}
+
+.hero-name span:hover::after {
+  width: 100%;
+}
+
+/* Role badge hover glow */
+.hero-role {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-role::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(220, 38, 38, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.hero-role:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Social icon pulse on hover */
+.hero-social {
+  position: relative;
+}
+
+.hero-social::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #dc2626, #ef4444);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.hero-social:hover::after {
+  opacity: 0.2;
+}
+
+/* CTA button enhanced */
+.hero-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.hero-cta:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Floating animation for badge */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  #hero {
+    padding-top: 80px;
+  }
+  
+  .hero-name {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-name {
+    font-size: 1.75rem;
+  }
+}
+
+/* Improved text readability */
+.hero-description {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient text effect for name (optional enhancement) */
+.hero-name {
+  background: linear-gradient(135deg, currentColor 0%, currentColor 50%, #dc2626 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}

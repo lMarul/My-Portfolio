@@ -10,6 +10,12 @@ import {
 import { cn } from "@/lib/utils";
 
 export const ProjectShowcase = ({ project, className }) => {
+  useEffect(() => {
+    if (project) {
+      console.log("ProjectShowcase - Rendering project:", project.title, "Thumbnail:", project.thumbnail);
+    }
+  }, [project]);
+
   if (!project) {
     return (
       <div
@@ -53,12 +59,15 @@ export const ProjectShowcase = ({ project, className }) => {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5 }}
               className="absolute inset-0"
-              style={{
-                backgroundImage: `url(${project.thumbnail})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            />
+            >
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className="w-full h-full object-cover"
+                onLoad={() => console.log("Image loaded successfully:", project.thumbnail)}
+                onError={(e) => console.error("Image failed to load:", project.thumbnail, e)}
+              />
+            </motion.div>
           )}
         </AnimatePresence>
 

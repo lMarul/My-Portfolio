@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import skillsData from "@/data/skills.json";
 
 const categories = ["all", "frontend", "backend", "frameworks", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const skills = useQuery(api.skills.get) ?? [];
+  const skills = skillsData;
 
   const filteredSkills = skills.filter(
     (skill) => activeCategory === "all" || skill.category === activeCategory

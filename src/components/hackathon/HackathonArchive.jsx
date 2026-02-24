@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import hackathonsData from "@/data/hackathons.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -29,14 +28,12 @@ import { HackathonCard } from "./HackathonCard";
  */
 
 export const HackathonArchive = () => {
-  const hackathons = useQuery(api.hackathons.get) || [];
-  const seedHackathons = useMutation(api.hackathons.seed);
+  const hackathons = hackathonsData || [];
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [isSeeding, setIsSeeding] = useState(false);
 
   // Extract all unique tags
   const allTags = useMemo(() => {

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import { Briefcase, Code, User, Sparkles, Zap, Shield } from "lucide-react";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import siteContentData from "@/data/siteContent.json";
 import { Anime3DCard, RevealOnScroll, MorphingShape } from "./AnimeComponents";
 
 /**
@@ -12,8 +11,8 @@ export const EpicAboutSection = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
-  // Fetch about content from Convex
-  const aboutContent = useQuery(api.siteContent.getAboutContent);
+  // Use about content from JSON
+  const aboutContent = siteContentData.about;
 
   // Default/Fallback content
   const defaultContent = {
@@ -103,7 +102,7 @@ export const EpicAboutSection = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-32 px-4 relative overflow-hidden"
+      className="py-32 px-4 relative overflow-hidden bg-background"
       style={{ perspective: "1500px" }}
     >
       {/* Floating morphing shapes */}

@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "hack-1",
+    "title": "Fire Detection System",
+    "organizer": "Tech Innovation Hackathon 2024",
+    "description": "An IoT-based fire detection and alert system that uses sensors and machine learning to detect fires early and send instant alerts. Features real-time monitoring, SMS/email notifications, and a web dashboard for fire department coordination.",
+    "thumbnail": "/Hackathons/fire-detection/Dashboard.png",
+    "date": "2024-02-15",
+    "tags": ["IoT", "Python", "Machine Learning", "Firebase", "Arduino", "TensorFlow"],
+    "award": "1st Place - Best Innovation",
+    "links": {
+      "github": "https://github.com/lMarul/fire-detection-system",
+      "demo": "https://fire-detection-demo.vercel.app"
+    },
+    "gallery": [
+      "/Hackathons/fire-detection/1.jpg",
+      "/Hackathons/fire-detection/2.jpg",
+      "/Hackathons/fire-detection/3.jpg",
+      "/Hackathons/fire-detection/4.jpg"
+    ]
+  },
+  {
+    "_id": "hack-2",
+    "title": "Jypsis",
+    "organizer": "National Coding Challenge 2023",
+    "description": "Jypsis is an innovative AI-powered learning companion that helps students understand complex topics through interactive explanations and personalized study plans. Features natural language processing, adaptive learning algorithms, and progress tracking.",
+    "thumbnail": "/Hackathons/Jypsis/Dashboard.png",
+    "date": "2023-12-08",
+    "tags": ["React", "OpenAI API", "Node.js", "MongoDB", "Natural Language Processing", "AI"],
+    "award": "2nd Place - Best AI Solution",
+    "links": {
+      "github": "https://github.com/lMarul/jypsis",
+      "demo": "https://jypsis-demo.vercel.app",
+      "social": "https://twitter.com/jypsis_app"
+    },
+    "gallery": [
+      "/Hackathons/Jypsis/1.jpg",
+      "/Hackathons/Jypsis/2.jpg",
+      "/Hackathons/Jypsis/3.jpg"
+    ]
+  }
+]

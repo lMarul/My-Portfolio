@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import experiencesData from "@/data/experiences.json";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -55,7 +54,7 @@ const calculateDuration = (startDate, endDate, isCurrent) => {
  * AllExperiences Page
  */
 export const AllExperiences = () => {
-    const experiences = useQuery(api.experiences.get) || [];
+    const experiences = experiencesData || [];
     const [searchQuery, setSearchQuery] = useState("");
 
     const filteredExp = experiences.filter(exp =>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import hackathonsData from "@/data/hackathons.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight, Trophy, Sparkles, Zap } from "lucide-react";
@@ -19,10 +18,8 @@ import { ProjectSpotlight } from "./ProjectSpotlight";
  */
 
 export const HackathonSection = () => {
-  const hackathons = useQuery(api.hackathons.get) || [];
-  const seedHackathons = useMutation(api.hackathons.seed);
+  const hackathons = hackathonsData || [];
   const [activeProject, setActiveProject] = useState(null);
-  const [isSeeding, setIsSeeding] = useState(false);
   
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
@@ -186,34 +183,14 @@ export const HackathonSection = () => {
     );
   }
 
-  // Empty state with seed button
+  // Empty state
   if (hackathons.length === 0) {
     return (
-      <section id="hackathons" className="py-20 px-4">
+      <section id="hackathons" className="py-20 px-4 bg-background">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center justify-center h-64 gap-4">
             <Trophy className="w-16 h-16 text-primary/50 animate-bounce" />
             <p className="text-muted-foreground text-lg">No hackathon projects yet.</p>
-            <button
-              onClick={handleSeed}
-              disabled={isSeeding}
-              className="group px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-red-500 
-                         text-white font-bold text-lg shadow-[0_0_30px_rgba(220,38,38,0.4)]
-                         hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] hover:scale-105
-                         transition-all duration-300 disabled:opacity-50"
-            >
-              {isSeeding ? (
-                <span className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/20 border-t-white" />
-                  Loading...
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5" />
-                  Load Sample Projects
-                </span>
-              )}
-            </button>
           </div>
         </div>
       </section>
@@ -224,7 +201,7 @@ export const HackathonSection = () => {
     <section 
       ref={sectionRef}
       id="hackathons" 
-      className="py-24 px-4 overflow-hidden relative"
+      className="py-24 px-4 overflow-x-clip overflow-y-visible relative bg-background"
     >
       {/* Floating particles container */}
       <div 
@@ -277,7 +254,7 @@ export const HackathonSection = () => {
         </div>
 
         {/* Carousel (Navigation) */}
-        <div ref={carouselRef}>
+        <div ref={carouselRef} className="overflow-visible">
           <HackathonCarousel
             hackathons={hackathons}
             activeId={activeProject?._id}

@@ -1,0 +1,53 @@
+[
+  {
+    "_id": "proj-1",
+    "title": "APC Gym Log System",
+    "category": "Web Application",
+    "description": "A comprehensive gym management system for APC (Asia Pacific College) that allows students and staff to track gym attendance, workout routines, and fitness progress. Features real-time tracking, admin dashboard, and analytics.",
+    "thumbnail": "/projects/apc-gym-log/Dashboard.png",
+    "date": "2024-03-15",
+    "tags": ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+    "links": {
+      "github": "https://github.com/lMarul/apc-gym-log",
+      "demo": "https://apc-gym-demo.vercel.app"
+    }
+  },
+  {
+    "_id": "proj-2",
+    "title": "APC Honors Checker",
+    "category": "Academic Tool",
+    "description": "An automated system for checking student eligibility for academic honors at Asia Pacific College. Calculates GPA, validates honor requirements, and generates honor certificates. Streamlines the academic honors evaluation process.",
+    "thumbnail": "/projects/apc-honors-checker/Dashboard.png",
+    "date": "2024-01-20",
+    "tags": ["React", "TypeScript", "Firebase", "Material-UI", "PDF Generation"],
+    "links": {
+      "github": "https://github.com/lMarul/apc-honors-checker",
+      "live": "https://apc-honors.vercel.app"
+    }
+  },
+  {
+    "_id": "proj-3",
+    "title": "Certificate Generator",
+    "category": "Automation Tool",
+    "description": "A powerful certificate generation tool that automates the creation of customized certificates for events, workshops, and competitions. Features template management, bulk generation, and automatic email distribution.",
+    "thumbnail": "/projects/certificate-generator/Dashboard.png",
+    "date": "2023-11-10",
+    "tags": ["Python", "PIL", "Flask", "PostgreSQL", "SendGrid API"],
+    "links": {
+      "github": "https://github.com/lMarul/certificate-generator"
+    }
+  },
+  {
+    "_id": "proj-4",
+    "title": "School Portal",
+    "category": "Education Platform",
+    "description": "A comprehensive school management portal that integrates student information, grade management, enrollment systems, and parent-teacher communication. Built with modern web technologies for optimal performance.",
+    "thumbnail": "/projects/school-portal/Dashboard.png",
+    "date": "2023-09-05",
+    "tags": ["Next.js", "Prisma", "PostgreSQL", "NextAuth", "Tailwind CSS", "tRPC"],
+    "links": {
+      "github": "https://github.com/lMarul/school-portal",
+      "demo": "https://school-portal-demo.vercel.app"
+    }
+  }
+]

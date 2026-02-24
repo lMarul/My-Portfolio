@@ -127,7 +127,7 @@ export const HackathonCarousel = ({
 
       {/* Card Container - Flexbox Accordion */}
       <div
-        className="flex gap-3 px-2 py-4 overflow-hidden"
+        className="flex gap-3 px-2 py-4 pr-8 overflow-visible"
       >
         {visibleHackathons.map((hackathon, index) => {
           const expanded = isExpanded(hackathon._id);

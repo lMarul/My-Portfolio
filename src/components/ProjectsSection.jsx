@@ -1,18 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import { FolderGit2, Sparkles, Code2, Zap, ChevronRight } from "lucide-react";
 import { ProjectCarousel } from "./projects/ProjectCarousel";
 import { ProjectShowcase } from "./projects/ProjectShowcase";
+import projectsData from "@/data/projects.json";
 
 export const ProjectsSection = () => {
-  const projects = useQuery(api.projects.get) || [];
-  const seedProjects = useMutation(api.projects.seed);
+  const projects = projectsData || [];
   const [activeProject, setActiveProject] = useState(null);
-  const [isSeeding, setIsSeeding] = useState(false);
 
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
@@ -26,14 +23,7 @@ export const ProjectsSection = () => {
     }
   }, [projects, activeProject]);
 
-  useEffect(() => {
-    if (activeProject && projects.length > 0) {
-      const updated = projects.find((p) => p._id === activeProject._id);
-      if (updated) {
-        setActiveProject(updated);
-      }
-    }
-  }, [projects]);
+
 
   // GSAP Animations
   useEffect(() => {
@@ -153,20 +143,13 @@ export const ProjectsSection = () => {
     }
   };
 
-  const handleSeed = async () => {
-    setIsSeeding(true);
-    try {
-      await seedProjects();
-    } finally {
-      setIsSeeding(false);
-    }
-  };
+
 
   return (
     <section
       ref={sectionRef}
       id="projects"
-      className="py-28 px-4 relative overflow-hidden"
+      className="py-28 px-4 relative overflow-x-clip overflow-y-visible bg-background"
     >
       {/* Floating particles */}
       <div
@@ -219,32 +202,6 @@ export const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Seed Button (Development) */}
-        {projects.length === 0 && (
-          <div className="text-center mb-12">
-            <button
-              onClick={handleSeed}
-              disabled={isSeeding}
-              className="group px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-red-500 
-                         text-white font-bold text-lg shadow-[0_0_30px_rgba(220,38,38,0.4)]
-                         hover:shadow-[0_0_50px_rgba(220,38,38,0.6)] hover:scale-105
-                         transition-all duration-300 disabled:opacity-50"
-            >
-              {isSeeding ? (
-                <span className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/20 border-t-white" />
-                  Loading...
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">
-                  <FolderGit2 className="w-5 h-5" />
-                  Load Sample Project
-                </span>
-              )}
-            </button>
-          </div>
-        )}
-
         {/* Main Showcase */}
         {projects.length > 0 && (
           <>
@@ -255,7 +212,7 @@ export const ProjectsSection = () => {
             </div>
 
             {/* Carousel */}
-            <div ref={carouselRef}>
+            <div ref={carouselRef} className="overflow-visible">
               <ProjectCarousel
                 projects={projects.slice(0, 5)}
                 activeId={activeProject?._id}

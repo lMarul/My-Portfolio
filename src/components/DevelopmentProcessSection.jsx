@@ -182,7 +182,7 @@ export const DevelopmentProcessSection = () => {
                                             <div className="relative z-10">
                                                 {/* Step Number */}
                                                 <div
-                                                    className="text-8xl font-black absolute -top-6 -right-6 opacity-5 select-none transition-all duration-500 group-hover:scale-110 group-hover:opacity-10"
+                                                    className="text-8xl font-black absolute -top-6 -right-6 opacity-80 select-none transition-all duration-500 group-hover:scale-110 group-hover:opacity-100 drop-shadow-md"
                                                     style={{ color: step.color }}
                                                 >
                                                     {step.id}

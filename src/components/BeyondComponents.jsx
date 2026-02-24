@@ -180,7 +180,7 @@ export const CyberGrid = () => {
 
     return (
         <div
-            className="absolute inset-0 pointer-events-none opacity-20"
+            className="absolute inset-0 pointer-events-none opacity-20 z-[1]"
             style={{
                 perspective: "500px",
                 overflow: "hidden"
@@ -239,7 +239,7 @@ export const LiquidBlob = ({ color = "#dc2626", size = 300, className = "" }) =>
     return (
         <div
             ref={blobRef}
-            className={`absolute opacity-20 filter blur-3xl pointer-events-none ${className}`}
+            className={`absolute opacity-20 filter blur-3xl pointer-events-none z-[2] ${className}`}
             style={{
                 width: size,
                 height: size,

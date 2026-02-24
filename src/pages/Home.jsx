@@ -10,6 +10,7 @@ import { ProjectsSection } from "../components/ProjectsSection";
 import { EpicContactSection } from "../components/EpicContactSection";
 import { HackathonSection } from "../components/hackathon";
 import { CertificationsSection } from "../components/CertificationsSection";
+import { GuestbookSection } from "../components/GuestbookSection";
 
 import { DevelopmentProcessSection } from "../components/DevelopmentProcessSection";
 
@@ -81,6 +82,7 @@ export const Home = () => {
         <DevelopmentProcessSection />
         <ExperienceSection />
         <EpicAboutSection />
+        <GuestbookSection />
         <EpicContactSection />
       </main>
     </>
